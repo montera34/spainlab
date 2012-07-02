@@ -1,0 +1,151 @@
+/*
+Theme Name: spainlab
+Theme URI: http://montera34.com
+Description: Theme for the website of the Spanish pavillion in the 13th Venize Architecture Bienal 
+Version: 0.1
+Author: montera34
+Author URI: http://montera34.com
+Tags: HTML5, CSS3, fixed width
+
+	vb v0.1
+	 http://montera34.com
+
+	This theme was designed and built by montera34,
+	whose blog you will find at http://montera34.com/
+
+	The CSS, XHTML and design is released under GPL:
+	http://www.opensource.org/licenses/gpl-license.php
+
+*/
+
+/* reseting styles */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big,
+cite, code, del, dfn, em, font, img,
+ins, kbd, q, s, samp, small, strike,
+strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+center, u, b, i {
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-weight: normal;
+font-style: normal;
+font-size: 100%;
+font-family: inherit;
+vertical-align: baseline;
+}
+body {
+line-height: 1em;
+}
+:focus {
+outline: 0;
+}
+ol, ul {
+list-style: none;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+content: "";
+}
+blockquote, q {
+quotes: "" "";
+}
+input, textarea {
+margin: 0;
+padding: 0;
+}
+hr {
+margin: 0;
+padding: 0;
+border: 0;
+color: #000;
+background-color: #000;
+height: 1px;
+}
+
+/* redefinitions, basic styles */
+hr {display: none;}
+
+strong,
+strong a {
+	font-weight: bold;
+}
+small {font-size: 0.9em;}
+em,
+em a {
+	font-style: italic;
+}
+pre,
+code {font-family: "courier new", monospace;}
+
+strong em,
+em strong {
+	font-weight: bold;
+	font-style: italic;
+}
+strong pre,
+strong code {
+	font-weight: bold;
+	font-family: "courier new", monospace;
+}
+
+p {margin-bottom: 1em;}
+blockquote {
+	padding-left: 30px;	
+}
+blockquote p:before {
+	content: "«";
+}
+blockquote p:after {
+	content: "»";
+}
+
+.alignleft {
+	float: left;
+	margin-right: 10px;
+}
+.alignright {
+	float: right;
+	margin-left: 10px;
+}
+.aligncenter {
+	display: block;
+	margin: 1em auto;
+	text-align: center;
+}
+.linelist li {
+	display: inline;
+}
+
+
+/* main structure */
+body {
+	text-align: left;
+}
+
+#pre,
+#content,
+#epi {
+	position: relative;
+	margin: 1em auto;
+	width: 960px;
+}
+
+/* colors */
+body {
+	background-color: #fff;
+	color: #000;
+}
+
+/* typography */
+body {
+	font: normal normal normal 62.5%/1em FreeSans,Helvetica,Arial,sans-serif;
+}
+
