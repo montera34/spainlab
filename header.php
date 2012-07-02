@@ -70,16 +70,16 @@ wp_head(); ?>
 	<header id="pre" role="banner">
 
 		<hgroup id="pre-tit">
-			<h1 id="blogname"><?php echo "<a href='$blogurl' title='Ir al inicio'>$blogname</a>"; ?></h1>
-			<h2 id="blogdesc"><?php echo $blogdesc; ?></h2>
+			<h1 id="blogname"><?php echo "<a href='" .$general_options['blogurl']. "' title='Ir al inicio'>" .$general_options['blogname']. "</a>"; ?></h1>
+			<h2 id="blogdesc"><?php echo $general_options['blogdesc']; ?></h2>
 		</hgroup>
-		<?php // navigation menu
-		$menu_slug = "menu-cabecera";
+		<?php // main navigation menu 1
+		$menu_slug = "header-left-menu";
 		if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_slug ] ) ) {
 			$menu_vars = wp_get_nav_menu_object( $locations[$menu_slug] );
 			//$args = array();
 			$menu_items = wp_get_nav_menu_items($menu_vars->term_id);
-			$menu_out = "<nav id='mainmenu' role='navigation'>";
+			$menu_out = "<nav id='mainmanu1' role='navigation'>";
 			//foreach ( (array) $menu_items as $key->$item ) {
 			foreach ( $menu_items as $item ) {
 				$item_tit = $item->title;
@@ -88,7 +88,26 @@ wp_head(); ?>
 				$item_class2 = $item->classes[1];
 				$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2'>$item_tit</a></div>";
 			}
-			$menu_out .= "</nav><!-- #mainmenu -->";
+			$menu_out .= "</nav><!-- #mainmenu1 -->";
+			echo $menu_out;
+		} // end if there is items in this menu
+		?>
+		<?php // main navigation menu 2
+		$menu_slug = "header-right-menu";
+		if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_slug ] ) ) {
+			$menu_vars = wp_get_nav_menu_object( $locations[$menu_slug] );
+			//$args = array();
+			$menu_items = wp_get_nav_menu_items($menu_vars->term_id);
+			$menu_out = "<nav id='mainmenu2' role='navigation'>";
+			//foreach ( (array) $menu_items as $key->$item ) {
+			foreach ( $menu_items as $item ) {
+				$item_tit = $item->title;
+				$item_url = $item->url;
+				$item_class1 = $item->classes[0];
+				$item_class2 = $item->classes[1];
+				$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2'>$item_tit</a></div>";
+			}
+			$menu_out .= "</nav><!-- #mainmenu2 -->";
 			echo $menu_out;
 		} // end if there is items in this menu
 		?>

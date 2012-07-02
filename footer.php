@@ -3,7 +3,7 @@
 
 	<footer id="epi">
 		<?php // navigation menu
-		$menu_slug = "menu-pie";
+		$menu_slug = "footer-menu";
 		if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_slug ] ) ) {
 			$menu_vars = wp_get_nav_menu_object( $locations[$menu_slug] );
 			//$args = array();
