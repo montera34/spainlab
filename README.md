@@ -1,4 +1,6 @@
 spainlab-theme
 ==============
+Theme for the SpainLab platform.
+Built in Wordpress.
 
-Theme for the SpainLab platform
+Developed by montera34.com
