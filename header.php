@@ -86,7 +86,7 @@ wp_head(); ?>
 				$item_url = $item->url;
 				$item_class1 = $item->classes[0];
 				$item_class2 = $item->classes[1];
-				$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2'>$item_tit</a></div>";
+				$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2' title='$item_tit'>$item_tit</a></div>";
 			}
 			$menu_out .= "</nav><!-- #mainmenu1 -->";
 			echo $menu_out;
@@ -105,7 +105,7 @@ wp_head(); ?>
 				$item_url = $item->url;
 				$item_class1 = $item->classes[0];
 				$item_class2 = $item->classes[1];
-				$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2'>$item_tit</a></div>";
+				$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2' title='$item_tit'>$item_tit</a></div>";
 			}
 			$menu_out .= "</nav><!-- #mainmenu2 -->";
 			echo $menu_out;
