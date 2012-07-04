@@ -6,17 +6,14 @@
 		$post_tit = get_the_title();
 			echo "<h1 class='art-tit'>$post_tit</h1>";
 
-			edit_post_link('Editar', ' &bull; ', ''); ?>
+			edit_post_link('Editar', '', ''); ?>
 	</header><!-- end .art-pre -->
 
 	<section>
-	<div>
-			<?php
+		<?php
 		the_content();
-			wp_link_pages( array( 'before' => '<section><div class="art-nav">P&aacute;ginas: ', 'after' => '</div></section>' ) );
-		} ?>
-	</div><!-- end class art-text -->
-
+		wp_link_pages( array( 'before' => '<section><div class="art-nav">P&aacute;ginas: ', 'after' => '</div></section>' ) );
+		?>
 	</section>
 
 </article>

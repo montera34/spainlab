@@ -8,8 +8,23 @@ $general_options = array(
 	'blogdesc' => get_bloginfo('description'),
 	'blogurl' => get_bloginfo('url'),
 	'blogtheme' => get_bloginfo('template_directory'),
+	// post types
+	'pt_a' => 'architects',
+	'pt_r' => 'remotes',
 	// stats code
-	'stats_code' => '',
+	'stats_code' => '
+<!-- Piwik -> 
+<script type="text/javascript">
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://montera34.com/piwik/" : "http://montera34.com/piwik/");
+document.write(unescape("%3Cscript src=\'" + pkBaseURL + "piwik.js\' type=\'text/javascript\'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+try {
+var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 5);
+piwikTracker.trackPageView();
+piwikTracker.enableLinkTracking();
+} catch( err ) {}
+</script><noscript><p><img src="http://montera34.com/piwik/piwik.php?idsite=5" style="border:0" alt="" /></p></noscript>
+<!- End Piwik Tracking Code -->',
 );
 ?>
 
