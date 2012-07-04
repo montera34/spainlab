@@ -83,6 +83,44 @@ add_action( 'init', 'my_add_excerpts_to_pages' );
 function my_add_excerpts_to_pages() {
 	add_post_type_support( 'page', 'excerpt' );
 }
+
+// extra fields in user profile
+add_action( 'show_user_profile', 'extra_user_profile_fields' );
+add_action( 'edit_user_profile', 'extra_user_profile_fields' );
+ 
+function extra_user_profile_fields( $user ) { ?>
+<h3><?php _e("Extra profile information", "blank"); ?></h3>
+ 
+<table class="form-table">
+<tr>
+<th><label for="twitter"><?php _e("Twitter"); ?></label></th>
+<td>
+<input type="text" name="twitter" id="twitter" value="<?php echo esc_attr( get_the_author_meta( 'twitter', $user->ID ) ); ?>" class="regular-text" /><br />
+<span class="description"><?php _e("Please enter your twitter username without @."); ?></span>
+</td>
+</tr>
+<tr>
+<th><label for="feed"><?php _e("Feed RSS"); ?></label></th>
+<td>
+<input type="text" name="feed" id="feed" value="<?php echo esc_attr( get_the_author_meta( 'feed', $user->ID ) ); ?>" class="regular-text" /><br />
+<span class="description"><?php _e("Please enter a valid URL feed."); ?></span>
+</td>
+</tr>
+</table>
+<?php }
+ 
+add_action( 'personal_options_update', 'save_extra_user_profile_fields' );
+add_action( 'edit_user_profile_update', 'save_extra_user_profile_fields' );
+ 
+function save_extra_user_profile_fields( $user_id ) {
+ 
+if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
+ 
+update_user_meta( $user_id, 'twitter', $_POST['twitter'] );
+update_user_meta( $user_id, 'feed', $_POST['feed'] );
+}
+
+
 //// CUSTOM DASHBOARD LOGO
 ////hook the administrative header output
 //add_action('admin_head', 'my_custom_logo');
