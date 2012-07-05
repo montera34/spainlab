@@ -9,10 +9,15 @@
 			<textarea id='addcontent-desc' name='addcontent-desc' cols='45' rows='10'></textarea>
 			<label>Description</label>
 		</fieldset>
-		<fieldset>
+		<fieldset id='addcontent1' class='clonedField'>
 	    		<input type='hidden' name='MAX_FILE_SIZE' value='5000000' />
 			<input id='addcontent-file' name='addcontent-file' type='file' />
 			<label>Image</label>
+		</fieldset>
+		<fieldset class='moreless'>
+			<input class='midbut' type='button' id='addcontent-btnAdd' value='+' />
+			<input class='midbut' type='button' id='addcontent-btnDel' value='-' />
+			<label>Want to upload more images?</label>
 		</fieldset>
 		<fieldset>
 			<input id='addcontent-video' name='addcontent-video' type='text' value='' />

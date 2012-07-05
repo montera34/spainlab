@@ -58,9 +58,12 @@
 	</script>
 <![endif]-->
 
-<?php
+<?php // including copy of jQuery hosted in WordPress package
+wp_enqueue_script("jquery");
+
 if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
-wp_head(); ?>
+wp_head();
+?>
 
 </head>
 
@@ -110,6 +113,8 @@ wp_head(); ?>
 			$menu_out .= "</nav><!-- #mainmenu2 -->";
 			echo $menu_out;
 		} // end if there is items in this menu
+
+		include "searchform.php";
 		?>
 
 	</header><!-- end #pre -->

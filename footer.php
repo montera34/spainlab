@@ -1,3 +1,4 @@
+<?php //include( get_stylesheet_directory(). '/general-vars.php' ); ?>
 	</div><!-- end id content -->
 	<hr />
 
@@ -27,9 +28,12 @@ echo "</pre>";
 
 	</footer>
 
-<?php wp_footer(); ?>
+<?php // stats code
+echo $general_options['stats_code']; ?>
 
-<?php echo $general_options['stats_code']; ?>
+<script type="text/javascript" src="<?php echo $general_options['blogtheme']. "/js/add.field.js"; ?>"></script>
+
+<?php wp_footer(); ?>
 
 </body><!-- end body as main container -->
 </html>
