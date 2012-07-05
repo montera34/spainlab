@@ -10,9 +10,18 @@
 			<label>Description</label>
 		</fieldset>
 		<fieldset>
-	    		<input type='hidden' name='MAX_FILE_SIZE' value='3000000' />
+	    		<input type='hidden' name='MAX_FILE_SIZE' value='5000000' />
 			<input id='addcontent-file' name='addcontent-file' type='file' />
 			<label>Image</label>
+		</fieldset>
+		<fieldset>
+			<input id='addcontent-video' name='addcontent-video' type='text' value='' />
+			<select id='addcontent-videoapi' name='addcontent-videoapi' value=''>
+				<option value=''></option>
+				<option value='youtube'>Youtube</option>
+				<option value='vimeo'>Vimeo</option>
+			</select>
+			<label>Video ID</label>
 		</fieldset>
 		<fieldset>
 			<input id='addcontent-submit' name='addcontent-submit' type='submit' value='Submit' />

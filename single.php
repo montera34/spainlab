@@ -7,7 +7,8 @@ if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
 
 		include("loop.single.php");
-		
+
+		include "loop.video.php";		
 	endwhile;
 
 else :

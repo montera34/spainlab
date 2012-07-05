@@ -1,4 +1,5 @@
 <?php
+
 // to log in a signed up user
 if ( isset($_POST['login-submit']) ) {
 	$redirect = $_POST['login-ref'];
@@ -15,7 +16,7 @@ if ( isset($_POST['login-submit']) ) {
 	} else {
 		// if everything correct
 		// redirect to content
-		$redirect .= "?login=true"
+	//	$redirect .= "?login=true"
 		header("location: " .$redirect);
 	}
 }
@@ -67,8 +68,38 @@ if ( isset($_POST['signup-submit']) ) {
 	} // end testing errors
 } // end sign up proccess
 
+// to log out a logged in user
+if ( is_user_logged_in() && isset($_POST['logout']) ) {
+	// if user is logged in and a logout link has been clicked
+	$redirect = $_POST['logout-ref'];
+	
+	wp_logout();
+	header("location: " .$redirect);
+
+}
+
+
+// log in or sign up successfully
+if ( is_user_logged_in() ) {
+	// if login successfully
+	// user data
+	global $current_user;
+	get_currentuserinfo();
+	$username = $current_user->user_login;
+
+	// logout form
+	include "user-logout.form.php";
+
+	$success_msg = "You have logged in as " .$username. " Welcome! You can <a href='" .$general_options['blogurl']. "/wp-admin/profile.php'>complete your profile</a> to give other users more information about you.";
+	// HTML output
+	echo $success_msg;
+	echo $logout_form;
+
+}
+
 if ( isset($_GET['user']) ) {
 	// if user has just signed up
-	$welcome = $_GET['user'];
+	$success_msg = "You have sign up successfully. First of all, you must log in using the form underneath.";
+	echo $success_msg;
 }
 ?>
