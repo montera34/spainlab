@@ -1,4 +1,4 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); // dows in need to be article??>>
 
 	<header class="art-tit">
 		<?php $post_perma = get_permalink();

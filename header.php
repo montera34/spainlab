@@ -79,14 +79,14 @@ wp_head(); ?>
 			$menu_vars = wp_get_nav_menu_object( $locations[$menu_slug] );
 			//$args = array();
 			$menu_items = wp_get_nav_menu_items($menu_vars->term_id);
-			$menu_out = "<nav id='mainmanu1' role='navigation'>";
+			$menu_out = "<nav id='mainmenu1' role='navigation'>";
 			//foreach ( (array) $menu_items as $key->$item ) {
 			foreach ( $menu_items as $item ) {
 				$item_tit = $item->title;
 				$item_url = $item->url;
 				$item_class1 = $item->classes[0];
 				$item_class2 = $item->classes[1];
-				$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2'>$item_tit</a></div>";
+				$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2' title='$item_tit'>$item_tit</a></div>";
 			}
 			$menu_out .= "</nav><!-- #mainmenu1 -->";
 			echo $menu_out;
@@ -105,7 +105,7 @@ wp_head(); ?>
 				$item_url = $item->url;
 				$item_class1 = $item->classes[0];
 				$item_class2 = $item->classes[1];
-				$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2'>$item_tit</a></div>";
+				$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2' title='$item_tit'>$item_tit</a></div>";
 			}
 			$menu_out .= "</nav><!-- #mainmenu2 -->";
 			echo $menu_out;

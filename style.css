@@ -138,14 +138,105 @@ body {
 	width: 960px;
 }
 
+hgroup {
+	height:50px;
+}
+#mainmenu1 {
+	float:left;
+}
+
+#mainmenu1, #mainmenu2{
+	margin:15px 20px 5px 0;
+	height:25px;
+}
+
+#mainmenu1 div, #mainmenu2 div, #epimenu div {
+	float:left;
+	margin:0 5px 0 0;
+}
+
+.part-mid1 {
+	width:500px;
+	float:left;
+}
+
+#related { 
+	margin:0 0 0 540px;
+}
+
+.architects {
+	height: 70px;
+	margin: 0 0 5px 0;
+}
+
+.art-tit  h2{
+	margin:8px 0 4px 0;
+}
+
+
+footer {
+	clear:both;
+}
+
+
+/* ---------end main structure -----*/
+
 /* colors */
 body {
 	background-color: #fff;
 	color: #000;
 }
 
+.architects {
+	border-bottom: 1px solid black;
+	border-top: 4px solid black;
+}
+
+.art-tit  h2 a{
+	color:#000;
+}
+
+footer {
+	border-top:2px solid #555;
+}
+/* ----------end colors----------- */
 /* typography */
 body {
 	font: normal normal normal 62.5%/1em FreeSans,Helvetica,Arial,sans-serif;
 }
 
+hgroup h1 {
+	font-size:3em;
+	font-weight:bold;
+	line-height:1em;
+}
+
+article h1 {
+	font-size:2em;
+	font-weight:bold;
+	line-height:2em;
+}
+
+.page-text p{
+	font-size: 1.2em;
+	line-height: 1.6em;
+}
+
+.art-tit  h2{
+	font-size:1.5em;
+	padding:1px;
+}
+
+.art-tit  h2 a{
+	text-decoration:none;
+}
+
+.art-tit  h2 a:hover{
+	color:#FFF;
+	background-color:#FF0000;
+	padding:1px;
+}
+
+footer {
+	padding:5px 0 0 0;
+}

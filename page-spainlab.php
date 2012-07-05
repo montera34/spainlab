@@ -13,12 +13,14 @@ if ( have_posts() ) :
 else :
 endif; ?>
 
+
 <?php // related content loop
 $pt = $general_options['pt_a'];
 $rl_tit = "Architects";
 $args = array(
 	'posts_per_page' => -1,
 	'post_type' => $pt,
+	'orderby' => 'rand',
 );
 $related_query = new WP_Query( $args );
 if ( $related_query->have_posts() ) :
