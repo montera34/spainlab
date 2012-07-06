@@ -1,4 +1,4 @@
-<?php //include( get_stylesheet_directory(). '/general-vars.php' ); ?>
+<?php include( get_stylesheet_directory(). '/general-vars.php' ); ?>
 	</div><!-- end id content -->
 	<hr />
 

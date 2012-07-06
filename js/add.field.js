@@ -13,7 +13,7 @@ $j(document).ready(function() {
 		var newElem = $j('#addcontent' + num).clone().attr('id', 'addcontent' + newNum);
 
 		// manipulate the name/id values of the input inside the new element
-		newElem.children(':last').attr('id', 'add-name' + newNum).attr('name', 'add-name' + newNum);
+		newElem.children(':last').attr('id', 'addcontent' + newNum).attr('name', 'addcontent' + newNum);
 
 		// insert the new element after the last "duplicatable" input field
 		$j('#addcontent' + num).after(newElem);
