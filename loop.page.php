@@ -1,4 +1,4 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class('part-mid1'); // I add here the class to put the width. not sure yet! ?>> 
+<article id="post-<?php the_ID(); ?>" <?php post_class('part-mid1'); // I add here the class to put the width. not sure yet where should be! ?>> 
 
 	<header class="art-pre">
 		<?php $post_perma = get_permalink();

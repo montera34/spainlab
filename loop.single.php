@@ -1,5 +1,5 @@
 <?php if (get_post_type() == 'architects'): // ---Architects--- need to be written in lowercase to make it work?>
-  <?php
+	<?php
 	// post type: architect
 	// gallery with all img attached
 	// tit
