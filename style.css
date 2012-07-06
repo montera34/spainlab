@@ -130,6 +130,10 @@ body {
 	text-align: left;
 }
 
+#blogname, #blogdesc{
+	text-indent:-9999px;
+}
+
 #pre,
 #content,
 #epi {
@@ -138,41 +142,69 @@ body {
 	width: 960px;
 }
 
-hgroup {
-	height:50px;
-}
-#mainmenu1 {
-	float:left;
+#navigation{
+	height:18px;
 }
 
-#mainmenu1, #mainmenu2{
-	margin:15px 20px 5px 0;
-	height:25px;
+#mainmenu1 {
+	float:left;
+
+}
+
+#mainmenu2{
+	float:right;
+	
 }
 
 #mainmenu1 div, #mainmenu2 div, #epimenu div {
 	float:left;
-	margin:0 5px 0 0;
+	margin:0 15px 0 0;
+	padding:4px;
 }
+
+#searchform{
+	float:right;
+	margin:0 15px 0 0;
+}
+
 
 .part-mid1 {
 	width:500px;
 	float:left;
 }
 
-#related { 
+#related, .bio { 
 	margin:0 0 0 540px;
 }
 
-.architects {
+#related .architects, .bio  .architects{
 	height: 70px;
 	margin: 0 0 5px 0;
 }
-
+header.art-tit {
+	display:inline;
+}
 .art-tit  h2{
 	margin:8px 0 4px 0;
 }
 
+.bio .page-text {
+	margin:0 0 0 115px;
+}
+
+
+#related  h2, #related .sub-tit-1{
+	margin-left:140px;
+	display:block;
+}
+
+.img-background {
+	height:70px;
+	width:115px;
+	float:left;
+	display: inline;
+	/*margin-top: -8px;  buscar mejor solución */
+}
 
 footer {
 	clear:both;
@@ -187,54 +219,87 @@ body {
 	color: #000;
 }
 
-.architects {
+#image-header{
+	border-top:3px solid #000;
+	border-bottom:3px solid #000;
+}
+
+#navigation{
+	border-top:2px solid #000;
+	border-bottom:2px solid #000;
+}
+
+#related  .architects, .bio  .architects{
 	border-bottom: 1px solid black;
 	border-top: 4px solid black;
 }
 
-.art-tit  h2 a{
+.art-tit  h2 a, #mainmenu1 div a:link, #mainmenu1 div a:visited, #mainmenu2 div a:link, #epimenu div a:link{
 	color:#000;
 }
+
+.art-tit  h2 a:hover, #mainmenu1 div:hover, #mainmenu1 div:hover, #mainmenu2 div:hover {
+	background-color:#FF0000;
+}
+
+.art-tit  h2 a:hover, #mainmenu1 div a:hover, #mainmenu1 div a:hover, #mainmenu2 div a:hover {
+	color:#FFF;
+}
+
+
 
 footer {
 	border-top:2px solid #555;
 }
 /* ----------end colors----------- */
+
+
+
+
 /* typography */
 body {
 	font: normal normal normal 62.5%/1em FreeSans,Helvetica,Arial,sans-serif;
 }
 
 hgroup h1 {
-	font-size:3em;
+	/*font-size:3em;
 	font-weight:bold;
-	line-height:1em;
+	line-height:1em;*/
 }
 
-article h1 {
+#mainmenu1, #mainmenu1 {
+	font-size:1.3em;
+}
+
+#mainmenu1 div a:link, #mainmenu1 div a:visited, #mainmenu2 div a:link, #epimenu div a:link {
+	text-decoration:none;
+	font-weight: bold;
+}
+
+article h1, .bio h2, .art-tit h2 {
 	font-size:2em;
 	font-weight:bold;
 	line-height:2em;
 }
 
-.page-text p{
+.page-text {
 	font-size: 1.2em;
 	line-height: 1.6em;
 }
 
-.art-tit  h2{
-	font-size:1.5em;
-	padding:1px;
-}
 
 .art-tit  h2 a{
 	text-decoration:none;
+	font-weight: bold !important; /* why has to be in "a" ? */
 }
 
 .art-tit  h2 a:hover{
-	color:#FFF;
-	background-color:#FF0000;
 	padding:1px;
+}
+
+.sub-tit-1{
+	font-size:1.5em;
+	font-weight:bold;
 }
 
 footer {

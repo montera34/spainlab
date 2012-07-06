@@ -61,6 +61,35 @@ function create_post_type() {
 		'_builtin' => false,
 		'_edit_link' => 'post.php?post=%d',
 	));
+	// Scienticic custom post type
+	register_post_type( 'scientifics', array(
+		'labels' => array(
+			'name' => __( 'Scientifics' ),
+			'singular_name' => __( 'Scientific' ),
+			'add_new_item' => __( 'Add scientific' ),
+			'edit' => __( 'Edit' ),
+			'edit_item' => __( 'Edit this scientific' ),
+			'new_item' => __( 'New scientific' ),
+			'view' => __( 'View scientific' ),
+			'view_item' => __( 'View this scientific' ),
+			'search_items' => __( 'Search scientific' ),
+			'not_found' => __( 'No scientific was found' ),
+			'not_found_in_trash' => __( 'No scientifics in the trash' ),
+			'parent' => __( 'Parent' )
+		),
+		'public' => true,
+		'publicly_queryable' => true,
+		'exclude_from_search' => false,
+		'menu_position' => 5,
+		'menu_icon' => get_template_directory_uri() . '/images/icon-post.type-integrantes.png',
+		'hierarchical' => true, // if true this post type will be as pages
+		'query_var' => true,
+		'supports' => array('title', 'editor','excerpt','custom-fields','author','page-attributes'),
+		'rewrite' => array('slug'=>'scientific','with_front'=>false),
+		'can_export' => true,
+		'_builtin' => false,
+		'_edit_link' => 'post.php?post=%d',
+	));
 
 }
 
