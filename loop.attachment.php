@@ -18,7 +18,6 @@
 //	if large_size is set, the large size will be retrieve
 //	$large_size = "large";
 // the vars must be included just before the include "loop.attachment.php" code
-// to include the attachment, just echo the var $attach_out
 
 		// defining the array containers for all the image sizes
 		$img_mini = array();
