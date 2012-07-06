@@ -1,3 +1,4 @@
+<?php include( get_stylesheet_directory(). '/general-vars.php' ); ?>
 	</div><!-- end id content -->
 	<hr />
 
@@ -20,13 +21,19 @@
 			$menu_out .= "</nav><!-- #mainmenu -->";
 			echo $menu_out;
 		} // end if there is items in this menu
+echo "<pre>";
+print_r($wp_query->query_vars);
+echo "</pre>";
 		?>
 
 	</footer>
 
-<?php wp_footer(); ?>
+<?php // stats code
+echo $general_options['stats_code']; ?>
 
-<?php echo $general_options['stats_code']; ?>
+<script type="text/javascript" src="<?php echo $general_options['blogtheme']. "/js/add.field.js"; ?>"></script>
+
+<?php wp_footer(); ?>
 
 </body><!-- end body as main container -->
 </html>
