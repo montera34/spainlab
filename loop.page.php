@@ -1,4 +1,8 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class('part-mid1'); // I add here the class to put the width. not sure yet where should be! ?>> 
+	<?php // videos
+	foreach ( $video_code as $video ) {
+		echo "<section>" .$video. "</section>";
+	} ?>
 
 	<header class="art-pre">
 		<?php $post_perma = get_permalink();

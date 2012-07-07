@@ -8,6 +8,8 @@ get_header();
 <?php // this page loop
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
+		$max_w = "500";
+		include "loop.video.php";
 		include("loop.page.php");
 	endwhile;
 else :
