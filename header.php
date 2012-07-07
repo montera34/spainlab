@@ -96,7 +96,11 @@ wp_head();
 				echo $menu_out;
 			} // end if there is items in this menu
 			?>
-			<?php // main navigation menu 2
+
+			<?php 
+			include "searchform.php";
+
+			// main navigation menu 2
 			$menu_slug = "header-right-menu";
 			if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_slug ] ) ) {
 				$menu_vars = wp_get_nav_menu_object( $locations[$menu_slug] );
@@ -115,7 +119,7 @@ wp_head();
 				echo $menu_out;
 			} // end if there is items in this menu
 
-			include "searchform.php";
+			
 			?>
 		</div>
 	</header><!-- end #pre -->

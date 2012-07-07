@@ -16,4 +16,25 @@ if ( have_posts() ) :
 else :
 endif; ?>
 
+<?php // related content loop
+$pt = $general_options['pt_s'];
+$rl_tit = "Scientifics";
+$args = array(
+	'posts_per_page' => -1,
+	'post_type' => $pt,
+	'orderby' => 'rand',
+);
+$related_query = new WP_Query( $args );
+if ( $related_query->have_posts() ) :
+	echo "<section id='related'>
+	<header class='section-tit'><h2><!--" .$rl_tit. "--></h2></header>";
+	while ( $related_query->have_posts() ) : $related_query->the_post();
+		include("loop.related.php");
+	endwhile;
+	echo "</section><!-- end #related -->";
+else :
+// if no related posts, code in here
+endif;
+?>
+
 <?php get_footer(); ?>

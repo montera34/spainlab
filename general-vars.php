@@ -11,6 +11,7 @@ $general_options = array(
 	// post types
 	'pt_a' => 'architects',
 	'pt_r' => 'remotes',
+	'pt_s' => 'scientifics',
 	// stats code
 	'stats_code' => '',
 );

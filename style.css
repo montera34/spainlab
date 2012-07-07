@@ -162,22 +162,31 @@ body {
 	padding:4px;
 }
 
-#searchform{
+#navigation #searchform{
 	float:right;
-	margin:0 15px 0 0;
 }
 
+#s { /* search*/
+	height: 14px;
+}
+#searchsubmit{
+	color:white;	
+	background-color:#000;
+	cursor: pointer;
+	border: 0px;
+	padding:1px 5px 1px 5px;
+}
 
 .part-mid1 {
 	width:500px;
 	float:left;
 }
 
-#related, .bio { 
+#related, #bio { 
 	margin:0 0 0 540px;
 }
 
-#related .architects, .bio  .architects{
+#related .architects, #bio  .architects{
 	height: 70px;
 	margin: 0 0 5px 0;
 }
@@ -188,7 +197,15 @@ header.art-tit {
 	margin:8px 0 4px 0;
 }
 
-.bio .page-text {
+#bio h2 {
+	margin-left:120px;
+}
+
+#bio .sub-tit-1 {
+	margin-left:5px;
+}
+
+#bio .page-text {
 	margin:0 0 0 115px;
 }
 
@@ -229,12 +246,25 @@ body {
 	border-bottom:2px solid #000;
 }
 
-#related  .architects, .bio  .architects{
+#searchsubmit{
+	color:white;	
+	background-color:#000;
+}
+#searchsubmit:hover{
+	color:white;	
+	background-color:#F00;
+}
+
+#s {
+	border: 1px solid black;
+}
+
+#related  .architects, #bio  .architects{
 	border-bottom: 1px solid black;
 	border-top: 4px solid black;
 }
 
-.art-tit  h2 a, #mainmenu1 div a:link, #mainmenu1 div a:visited, #mainmenu2 div a:link, #epimenu div a:link{
+.art-tit  h2 a, #mainmenu1 div a:link, #mainmenu1 div a:visited, #mainmenu2 div a:link, #mainmenu2 div a:visited, #epimenu div a:link, #epimenu div a:visited{
 	color:#000;
 }
 
@@ -276,8 +306,17 @@ hgroup h1 {
 	font-weight: bold;
 }
 
-article h1, .bio h2, .art-tit h2 {
+#s {
+	font-size: 1em;
+}
+
+article h1,  .art-tit h2 {
 	font-size:2em;
+	font-weight:bold;
+	line-height:2em;
+}
+#bio h2{
+	font-size:1.8em;
 	font-weight:bold;
 	line-height:2em;
 }
