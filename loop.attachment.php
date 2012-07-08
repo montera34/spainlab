@@ -78,6 +78,17 @@
 
 // this code is for attachment output
 // you can include here, or anywhere inside the loop
+if ( isset($video_code) ) {
+	// if any video attached to the post
+	$video_out = "";
+	foreach ( $video_code as $video ) {
+		$video_out .= "<div class='zoom-item'>" .$video. "</div>";
+	}
+	foreach ( $video_thumbs as $vthumb ) {
+		$video_thumbs_out .= "<div class='single-thumb'>" .$vthumb. "</div>";
+	}
+} // end if video attached
+
 if ( isset($img_medium) && isset($img_mini) ) {
 	$attach_out = "
 		<section id='single-gallery'>
@@ -90,7 +101,7 @@ if ( isset($img_medium) && isset($img_mini) ) {
 			</div>
 		";
 	}
-	$attach_out .= "
+	$attach_out .= $video_out. "
 			</div><!-- end #visor -->
 			<div id='selector'>
 	";
@@ -101,7 +112,7 @@ if ( isset($img_medium) && isset($img_mini) ) {
 			</div>
 		";
 	}
-	$attach_out .= "
+	$attach_out .= $video_thumbs_out. "
 			</div><!-- end #selector -->
 		</section><!-- end #single-gallery -->
 	";
@@ -115,12 +126,22 @@ if ( isset($img_medium) && isset($img_mini) ) {
 			</div>
 		";
 	}
-	$attach_out .= "</section>";
+	$attach_out .= $video_out. "</section>";
+
+} elseif ( !isset($img_medium) && !isset($img_mini) && isset($video_code) ) {
+	// if no images, but videos
+	$attach_out = "
+		<section id='single-gallery'>
+			<div id='visor'>
+	";
+	$attach_out .= $video_out. "
+			</div><!-- end #visor -->
+		</section>
+	";
 
 } else {
 	// if no image
 	// here is the place if you want to define any var or any alternative text:
 	// $attach_out = "This content doesn't have any image yet, but you can upload some.";
 }
-
 ?>

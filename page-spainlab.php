@@ -10,17 +10,20 @@ if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
 		$max_w = "500";
 		include "loop.video.php";
-		include("loop.page.php");
+		include "loop.attachment.php";
+		include "loop.page.php";
 	endwhile;
 else :
 endif; ?>
 
 
 <?php // related content loop
+//wp_reset_postdata();
 $pt = $general_options['pt_a'];
 $rl_tit = "Architects";
 $args = array(
 	'posts_per_page' => -1,
+	'nopaging' => 'true',
 	'post_type' => $pt,
 	'orderby' => 'rand',
 );
@@ -36,9 +39,5 @@ else :
 // if no related posts, code in here
 endif;
 ?>
-
-
-
-
 
 <?php get_footer(); ?>
