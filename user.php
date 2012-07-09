@@ -1,26 +1,5 @@
 <?php
 
-// to log in a signed up user
-if ( isset($_POST['login-submit']) ) {
-	$redirect = $_POST['login-ref'];
-	$creds = array();
-	$creds['user_login'] = $_POST['login-username'];
-	$creds['user_password'] = $_POST['login-pass'];
-	$creds['remember'] = $_POST['login-remember'];
-	$user = wp_signon( $creds, false );
-
-	if ( is_wp_error($user) ) {
-		// if error
-		// echo error message
-		echo $user->get_error_message();
-	} else {
-		// if everything correct
-		// redirect to content
-	//	$redirect .= "?login=true"
-		header("location: " .$redirect);
-	}
-}
-// end log in proccess
 
 // to sign up a new user
 if ( isset($_POST['signup-submit']) ) {

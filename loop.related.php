@@ -38,20 +38,35 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 		$post_thumbimg = $img_mini_vars[0];
 	}
 
+} elseif ( get_post_type() == $general_options['pt_s'] ) {
+	// if scientific post type
+	// related tit
+	$post_tit = get_the_title();
+	// related subtit
+	if ( post_custom('institution') ) {
+		$post_subtit = get_post_meta($post->ID, 'institution', true);
+	} else { unset($post_subtit); }
+	// related thumb
+	// related thumb
+	if ( post_custom('thumbimg') ) {
+		// get thumbnail image custom field value
+		$post_thumbimg = get_post_meta($post->ID, 'thumbimg', true);
+	} else { unset($post_thumbimg); }
+
 } elseif ( get_post_type() == 'post' ) {
 	// if is a post
 	// related tit
-	$post_tit = "related post " .$related_count;
+	$post_tit = get_the_title();
 	// related subtit
-	$post_subtit = get_the_title();
+	$post_subtit = get_the_date();
 	// related thumb
 	$img_post_parent = get_the_ID();
 	$img_amount = 1;
 	$mini_size = array(100,100);
 	include "loop.attachment.php";
-	if ( isset($attach_out) ) {
+	if ( isset($img_mini) ) {
 		$post_thumbimg = $img_mini_vars[0];
-	}
+	} else { unset($post_thumbimg); }
 
 }
 ?>
