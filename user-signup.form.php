@@ -25,10 +25,21 @@ $signup_form = "
 		<input id='signup-lastname' name='signup-lastname' type='text' value='' />
 		<label>Last name</label>
 	</fieldset>
-
 	<fieldset>
 		<textarea id='signup-bio' name='signup-bio' cols='45' rows='10'></textarea>
 		<label>Briefly about you</label>
+	</fieldset>
+	<fieldset>
+		<input id='signup-twitter' name='signup-twitter' type='text' value='' />
+		<label>Twitter account (without @)</label>
+	</fieldset>
+	<fieldset>
+		<input id='signup-website' name='signup-website' type='text' value='' />
+		<label>Website</label>
+	</fieldset>
+	<fieldset>
+		<input id='signup-feed' name='signup-feed' type='text' value='' />
+		<label>Website Feed</label>
 	</fieldset>
 
 	<fieldset>

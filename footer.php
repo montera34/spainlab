@@ -21,9 +21,6 @@
 			$menu_out .= "</nav><!-- #mainmenu -->";
 			echo $menu_out;
 		} // end if there is items in this menu
-echo "<pre>";
-print_r($wp_query->query_vars);
-echo "</pre>";
 		?>
 
 	</footer>

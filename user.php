@@ -28,9 +28,15 @@ if ( isset($_POST['signup-submit']) ) {
 	// catching all $_POST data
 	$redirect = $_POST['signup-ref'];
 	$username = $_POST['signup-username'];
-	$mail = $_POST['signup-mail'];
 	$pass = $_POST['signup-pass'];
 	$pass2 = $_POST['signup-pass2'];
+	$mail = $_POST['signup-mail'];
+	$firstname = $_POST['signup-firstname'];
+	$lastname = $_POST['signup-lastname'];
+	$bio = $_POST['signup-bio'];
+	$twitter = $_POST['signup-twitter'];
+	$website = $_POST['signup-website'];
+	$feed = $_POST['signup-feed'];
 
 	require_once(ABSPATH . WPINC . '/registration.php');
 
@@ -60,7 +66,21 @@ if ( isset($_POST['signup-submit']) ) {
 		$random_pass = wp_generate_password( 12, false );
 		if ( $pass == '' ) { $pass = $random_pass; }
 
-		$user_id = wp_create_user( $username, $pass, $mail );
+//		$user_id = wp_create_user( $username, $pass, $mail );
+
+		$userdata = array(
+			'user_pass' => $pass,
+			'user_login' => $username,
+			'user_url' => $website,
+			'user_email' => $mail,
+			'first_name' => $firstname,
+			'last_name' => $lastname,
+			'description' => $bio,
+			'role' => 'contributor',
+			'twitter' => $twitter,
+			'feed' => $feed,
+		);
+		$user_id = wp_insert_user( $userdata );
 
 		$redirect .= "?user=" .$user_id;
 		header("location: " .$redirect);
@@ -69,13 +89,7 @@ if ( isset($_POST['signup-submit']) ) {
 } // end sign up proccess
 
 // to log out a logged in user
-if ( is_user_logged_in() && isset($_POST['logout-submit']) ) {
-	// if user is logged in and a logout link has been clicked
-	$redirect = $_POST['logout-ref'];
-	
-	wp_logout();
-	header("location: " .$redirect);
-}
+// see header.php
 
 // vars for forms
 $action_slug = $wp_query->query_vars['name'];
