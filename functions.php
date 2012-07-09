@@ -1,4 +1,11 @@
 <?php
+// hide admin toolbar by default
+// show admin bar only for admins and editors
+//if (!current_user_can('edit_posts')) {
+//	add_filter('show_admin_bar', '__return_false');
+//}
+show_admin_bar(false);
+
 // Custom post types
 add_action( 'init', 'create_post_type', 0 );
 
