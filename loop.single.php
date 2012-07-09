@@ -8,8 +8,6 @@ if ( get_post_type() == $general_options['pt_a'] || get_post_type() == $general_
 	// if architects post type or scientifics post type
 	// author bio
 	$bio = get_the_excerpt();
-	// author name
-	$author = get_post_meta($post->ID, 'integrantes', true);
 	// author thumb
 	if ( post_custom('thumbimg') ) {
 		// get thumbnail image custom field value
@@ -20,6 +18,8 @@ if ( get_post_type() == $general_options['pt_a'] || get_post_type() == $general_
 		// get integrantes custom field values
 		$integrantes = get_post_meta($post->ID, 'integrantes', true);
 		$post_subtit = "Project statement by <em>" .$integrantes. "</em>";
+		// author name
+		$author = $integrantes;
 	} else { $integ_out = ""; }
 
 } else {

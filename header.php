@@ -18,6 +18,16 @@
 
 <?php global $general_options; require_once( get_stylesheet_directory(). '/general-vars.php' ); ?>
 
+<?php
+// to log out a logged in user
+if ( is_user_logged_in() && isset($_POST['logout-submit']) ) {
+	// if user is logged in and a logout link has been clicked
+	$redirect = $_POST['logout-ref'];
+	
+	wp_logout();
+	header("location: " .$redirect);
+} ?>
+
 <title>
 <?php
 	/* From twentyeleven theme
