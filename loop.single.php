@@ -4,8 +4,8 @@ $post_perma = get_permalink();
 $post_tit = get_the_title();
 
 // vars depending on the post type
-if ( get_post_type() == $general_options['pt_a'] || get_post_type() == $general_options['pt_s'] ) {
-	// if architects post type or scientifics post type
+if ( get_post_type() == $general_options['pt_a'] ) {
+	// if architects post type
 	// author bio
 	$bio = get_the_excerpt();
 	// author thumb
@@ -21,6 +21,18 @@ if ( get_post_type() == $general_options['pt_a'] || get_post_type() == $general_
 		// author name
 		$author = $integrantes;
 	} else { $integ_out = ""; }
+
+} elseif ( get_post_type() == $general_options['pt_s'] ) {
+	// if scientifics post type
+	// author bio
+	$bio = get_the_excerpt();
+	// author thumb
+	if ( post_custom('thumbimg') ) {
+		// get thumbnail image custom field value
+		$post_thumbimg = get_post_meta($post->ID, 'thumbimg', true);
+	}
+	// author name
+	$author = get_the_title();
 
 } else {
 //} elseif ( get_post_type() == $general_options['pt_r'] || get_post_type() == 'post' ) {

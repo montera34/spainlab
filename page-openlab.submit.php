@@ -21,6 +21,7 @@ if ( is_user_logged_in() && isset($_POST['addcontent-submit']) ) {
 	$form_img = $_FILES['addcontent-file1']['name'];
 	$form_video = $_POST['addcontent-video'];
 	$form_videoapi = $_POST['addcontent-videoapi'];
+	$form_url = $_POST['addcontent-url'];
 
 	// check possible errors
 	$form_errors = array();
@@ -79,6 +80,9 @@ echo "</pre>";
 		// adding video custom fields to the post
 		if ( $form_video != '' ) {
 			add_post_meta($post_id, $form_videoapi, $form_video);
+		}
+		if ( $form_url != '' ) {
+			add_post_meta($post_id, 'project_url', $form_url);
 		}
 
 // asociamos la entrada a los términos que queramos de la taxonomía tags

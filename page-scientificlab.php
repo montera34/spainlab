@@ -6,6 +6,7 @@ get_header();
 ?>
 
 <?php
+
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
 
@@ -14,7 +15,34 @@ if ( have_posts() ) :
 	endwhile;
 
 else :
-endif; ?>
+endif;
+
+// random video loop from scientific post type
+// meter loop de cient'ificos, sacamos un elemento random:
+// nombre scientific
+// video (first custom field)
+// read more
+$pt = $general_options['pt_s'];
+$rl_tit = "";
+$args = array(
+	'posts_per_page' => 1,
+	'post_type' => $pt,
+);
+$random_query = new WP_Query( $args );
+if ( $random_query->have_posts() ) :
+	echo "<section id='single-gallery'>";
+	while ( $random_query->have_posts() ) : $random_query->the_post();
+		$max_w = "500";
+		include "loop.video.php";
+
+		echo $video_code[0];
+	endwhile;
+	echo "</section><!-- end #single-gallery -->";
+else :
+// if no related posts, code in here
+endif;
+
+?>
 
 <?php // related content loop
 $pt = $general_options['pt_s'];

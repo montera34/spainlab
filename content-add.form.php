@@ -36,6 +36,10 @@ if ( $form_errors[0] != '' ) {
 			<label>Video ID</label>
 		</fieldset>
 		<fieldset>
+			<input id='addcontent-url' name='addcontent-url' type='text' value='http://' />
+			<label>Project website</label>
+		</fieldset>
+		<fieldset>
 			<input id='addcontent-submit' name='addcontent-submit' type='submit' value='Submit' />
 		</fieldset>
 	</form><!-- #addcontent -->
