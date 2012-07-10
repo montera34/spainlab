@@ -12,6 +12,7 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 	if ( post_custom('thumbimg') ) {
 		// get thumbnail image custom field value
 		$post_thumbimg = get_post_meta($post->ID, 'thumbimg', true);
+		$post_thumbimg = "<img src='>" .$post_thumbimg. "' alt='Author image' />";
 	}
 	// post subtitle
 	if ( post_custom('integrantes') ) {
@@ -30,6 +31,7 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 	if ( post_custom('thumbimg') ) {
 		// get thumbnail image custom field value
 		$post_thumbimg = get_post_meta($post->ID, 'thumbimg', true);
+		$post_thumbimg = "<img src='>" .$post_thumbimg. "' alt='Author image' />";
 	}
 	// author name
 	$author = get_the_title();
@@ -44,7 +46,7 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 		$author = get_the_author_meta('first_name'). " " .get_the_author_meta('last_name');
 	} else { $author = get_the_author_meta('display_name'); }
 	// author thumb
-//	$post_thumbing = get_avatar( get_the_author_meta('ID'), 128 );
+	$post_thumbimg = get_avatar( get_the_author_meta('ID'), 128 );
 	// post subtitle
 	$post_author = get_the_author(); 
 	$post_subtit = "Posted by <em>" .$post_author. "</em>";
@@ -79,7 +81,10 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 
 	<aside id="bio">
 		<div class="architects">
-			<?php if ( isset($post_thumbimg) ) { echo "<span class='img-background' style='background: url(" .$post_thumbimg. ") center center no-repeat #eee;' ></span>"; } ?>
+			<?php if ( isset($post_thumbimg) ) {
+				//echo "<span class='img-background' style='background: url(" .$post_thumbimg. ") center center no-repeat #eee;' ></span>";
+				echo "<div class='img-background' style='overflow: hidden'>" .$post_thumbimg. "</div>";
+			} ?>
 			<header><h2><?php echo $author; ?></h2></header>
 			<?php if ( $bio != '' ) { ?><span class='sub-tit-1'>bio</span><?php } ?>
 		</div><!-- end .architects -->

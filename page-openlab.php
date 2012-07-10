@@ -22,8 +22,7 @@ $args = array(
 );
 $related_query = new WP_Query( $args );
 if ( $related_query->have_posts() ) :
-	echo "<section id='related'>
-	<header class='section-tit'><h2>" .$rl_tit. "</h2></header>";
+	echo "<section id='related'>";
 	while ( $related_query->have_posts() ) : $related_query->the_post();
 		include("loop.related.php");
 	endwhile;
