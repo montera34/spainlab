@@ -4,10 +4,11 @@ Template Name: Open Lab submit form
 */
 get_header();
 ?>
-
-<?php // dealing with user log in or sign up
-include "user.php";
-?>
+<div class="part-mid1 page-text">
+	<?php // dealing with user log in or sign up
+	include "user.php";
+	?>
+</div>
 
 <?php // doing the inserts into DB
 if ( is_user_logged_in() && isset($_POST['addcontent-submit']) ) {

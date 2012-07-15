@@ -182,20 +182,45 @@ body {
 	float:left;
 }
 
-#related, #bio { 
+#bio, #related { 
 	margin:0 0 0 540px;
 }
 
-#related .architects, #bio  .architects{
+.single #related{ 
+	margin-top:40px;
+}
+
+#related .architects, #bio  .architects,  #related  .scientifics{
 	height: 70px;
 	margin: 0 0 5px 0;
 }
+
+#openlab  { 
+	clear:left;
+}
+
+#openlab  .remotes { 
+	width: 400px;
+	height: 130px;
+	float: left;
+	margin: 0px 80px 10px 0px;
+}
+
+
 header.art-tit {
 	display:inline;
 }
 .art-tit  h2{
 	margin:8px 0 4px 0;
 }
+
+.postmetadata {
+	margin:8px 0 8px 0;
+}
+#content-txt{
+	margin:15px 0 0 0;
+}
+
 
 #bio h2 {
 	margin-left:120px;
@@ -206,12 +231,13 @@ header.art-tit {
 }
 
 #bio .page-text {
-	margin:0 0 0 115px;
+	margin:0 0 0 122px;
 }
 
+article.post{margin:15px 0 15px 0;}
 
-#related  h2, #related .sub-tit-1{
-	margin-left:140px;
+#related  h2, #related .sub-tit-1, #related .sub-tit-1{
+	margin-left:140px;	
 	display:block;
 }
 
@@ -220,7 +246,71 @@ header.art-tit {
 	width:115px;
 	float:left;
 	display: inline;
+	position: relative;
+	overflow: hidden;
 	/*margin-top: -8px;  buscar mejor solución */
+}
+.img-background img {
+	position: absolute;
+	bottom: -40px;
+	left: -17px;
+}
+.remotes .img-background{
+	height:130px;
+	width:130px;
+	float:left;
+	display: inline;
+	margin-right:10px;
+	position: relative;
+	overflow: hidden;
+}
+.remotes .img-background img {
+	position: absolute;
+	bottom: -10px;
+	left: -10px;
+}
+
+.excerpt{
+	margin-left: 140px;
+	margin-top: 15px;
+	display: block;
+}
+
+.single-thumb {
+	float: left;
+	width: 50px;
+	height: 50px;
+	padding: 2px;
+}
+.single-thumb {
+	height: 100px;
+	width: 100px;
+	float: left;
+	padding: 3px;
+}
+.single-thumb:hover {
+	cursor: pointer;
+}
+
+
+#selector {
+	bottom: -125px !important; /* revisar la posición del selector. no devbería ir así */
+}
+
+#addcontent label{
+	float:left;
+}
+
+#addcontent input {
+	margin-left:30px;
+}
+#addcontent textarea {
+	margin-left:30px;
+}
+
+
+fieldset{
+	margin-bottom:10px;
 }
 
 footer {
@@ -237,13 +327,14 @@ body {
 }
 
 #image-header{
-	border-top:3px solid #000;
-	border-bottom:3px solid #000;
+	border-top:2px solid #000;
+	border-bottom:2px solid #000;
 }
 
 #navigation{
 	border-top:2px solid #000;
 	border-bottom:2px solid #000;
+	background-color:#000;
 }
 
 #searchsubmit{
@@ -259,16 +350,21 @@ body {
 	border: 1px solid black;
 }
 
-#related  .architects, #bio  .architects{
-	border-bottom: 1px solid black;
-	border-top: 4px solid black;
+#related  .architects, #bio  .architects, #related  .scientifics, #openlab  .remotes {
+	border-top: 3px solid black;
+	border-bottom: 1px solid #A0A0A0;
 }
 
-.art-tit  h2 a, #mainmenu1 div a:link, #mainmenu1 div a:visited, #mainmenu2 div a:link, #mainmenu2 div a:visited, #epimenu div a:link, #epimenu div a:visited{
+
+#mainmenu1 div a:link, #mainmenu1 div a:visited, #mainmenu2 div a:link, #mainmenu2 div a:visited{
+	color:#FFF;
+}
+
+.art-tit  h2 a, #epimenu div a:link, #epimenu div a:visited, h2.art-tit a{
 	color:#000;
 }
 
-.art-tit  h2 a:hover, #mainmenu1 div:hover, #mainmenu1 div:hover, #mainmenu2 div:hover {
+.art-tit  h2 a:hover, #mainmenu1 div:hover, #mainmenu1 div:hover, #mainmenu2 div:hover, h2.art-tit a:hover {
 	background-color:#FF0000;
 }
 
@@ -276,6 +372,15 @@ body {
 	color:#FFF;
 }
 
+
+.postmetadata, .postmetadata a {
+	color:#555;
+}
+
+.access-off,
+.single-thumb:hover {
+	background-color: #f00;
+}
 
 
 footer {
@@ -310,11 +415,19 @@ hgroup h1 {
 	font-size: 1em;
 }
 
-article h1,  .art-tit h2 {
+article h1,  .art-tit h2{
 	font-size:2em;
 	font-weight:bold;
-	line-height:2em;
+	line-height:1.4em;
 }
+
+h2.art-tit a{
+	font-size:1.6em;
+	font-weight:bold;
+	line-height:1.4em;
+	text-decoration:none;
+}
+
 #bio h2{
 	font-size:1.8em;
 	font-weight:bold;
@@ -340,6 +453,16 @@ article h1,  .art-tit h2 {
 	font-size:1.5em;
 	font-weight:bold;
 }
+
+.sub-tit-2{
+	font-size:1.3em;
+	font-weight:bold;
+}
+
+label {
+	font-size:1.3em;
+}
+
 
 footer {
 	padding:5px 0 0 0;
