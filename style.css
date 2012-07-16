@@ -234,7 +234,10 @@ header.art-tit {
 	margin:0 0 0 122px;
 }
 
-article.post{margin:15px 0 15px 0;}
+article.post{	margin:15px 0 15px 0;
+	margin: 15px 0 50px 0;
+	border-bottom: 5px solid #AAA;
+}
 
 #related  h2, #related .sub-tit-1, #related .sub-tit-1{
 	margin-left:140px;	
@@ -308,6 +311,19 @@ article.post{margin:15px 0 15px 0;}
 	margin-left:30px;
 }
 
+.submit-button a{
+	padding: 5px;
+	height: 25px;
+	margin-left: 500px;
+}
+
+.boxes {
+	margin-bottom:10px;
+	width:400px;
+	height:100px;	
+	display: block;
+	padding:8px;
+}
 
 fieldset{
 	margin-bottom:10px;
@@ -315,6 +331,7 @@ fieldset{
 
 footer {
 	clear:both;
+	padding:5px 0 0 0;
 }
 
 
@@ -345,6 +362,17 @@ body {
 	color:white;	
 	background-color:#F00;
 }
+.submit-button a{
+	background-color: grey;
+	color:#FFF;
+	-webkit-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border-radius: 5px;
+}
+
 
 #s {
 	border: 1px solid black;
@@ -382,6 +410,10 @@ body {
 	background-color: #f00;
 }
 
+.boxes,.boxes .textwidget a {
+	background-color:grey;
+	color:white;
+}
 
 footer {
 	border-top:2px solid #555;
@@ -415,8 +447,14 @@ hgroup h1 {
 	font-size: 1em;
 }
 
-article h1,  .art-tit h2{
+article h1{
 	font-size:2em;
+	font-weight:bold;
+	line-height:1.4em;
+}
+
+.art-tit h2{
+	font-size:1.6em;
 	font-weight:bold;
 	line-height:1.4em;
 }
@@ -463,7 +501,22 @@ label {
 	font-size:1.3em;
 }
 
-
-footer {
-	padding:5px 0 0 0;
+.submit-button a{
+	text-decoration:none;
+	font-size:1.5em;
 }
+
+.boxes h3 {
+	font-size: 1.8em;
+line-height:1.8em;
+	
+}
+
+.boxes .textwidget, .textwidget {
+	font-size: 1.4em;
+line-height:1.6em;
+	
+}
+
+
+

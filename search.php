@@ -6,9 +6,11 @@
 <?php if (have_posts()) : ?>
 	<?php while (have_posts()) : the_post(); ?>
 	<ul class="">
-		<li id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<a href="<?php the_permalink() ?>" rel="bookmark" title="Permalink to <?php the_title(); ?>" class=""><?php the_title(); ?>
-			</a>
+		<li id="post-<?php the_ID(); ?>" <?php post_class('art-tit'); ?>>
+			<h2 class='art-tit'>
+				<a href="<?php the_permalink() ?>" rel="bookmark" title="Permalink to <?php the_title(); ?>" class=""><?php the_title(); ?>
+				</a>
+			</h2>
 			<?php the_excerpt(); ?>
 	<?php if ( 'architects' == get_post_type() || 'remotes' == get_post_type() ): //Architects or Remotes ?>
 

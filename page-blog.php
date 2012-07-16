@@ -13,26 +13,37 @@ if ( have_posts() ) :
 	endwhile;
 else :
 endif; ?>
+ <?php rewind_posts(); ?>
 
-<?php global $more;    	// Declare global $more (before the loop). "para que seguir leyendo funcione"
-			//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
-	$args = array(
-  		'caller_get_posts' => 1
-		);
-	if ( $paged > 1 ) {
-  	$args['paged'] = $paged;
-		}
+<?php
+
+
+//mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
+// also found help in http://wordpress.org/support/topic/more-tag-ignored-on-home-page
+$args = array(
+  'caller_get_posts' => 1
+);
+if ( $paged > 1 ) {
+  $args['paged'] = $paged;
+}
  
-	$my_query = new WP_Query($args);
-?>
+$my_query = new WP_Query($args);
 
+
+?>
 <?php if ( $my_query->have_posts() ) : ?>
   		<?php while ( $my_query->have_posts() ) : 
  			 $my_query->the_post(); 
-			 //necessary to show the tags 
-   			global $wp_query;
-			$wp_query->in_the_loop = true;?>
+			 ?>
+			 <?php
+   						 //necessary to show the tags 
+   						 global $wp_query;
+						$wp_query->in_the_loop = true;
 
+global $more;    // Declare global $more (before the loop). "para que seguir leyendo funcione"
+$more = 0; 
+  					  ?>
+	
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<h2 class='art-tit'>
 				<a class="" href="<?php the_permalink() ?>" rel="bookmark" title="Permalink to <?php the_title(); ?>">
@@ -77,10 +88,7 @@ endif; ?>
 			
 
 </div>
-
-
 <section id='related'>
 	<?php if ( ! dynamic_sidebar( 'bar-3' ) ) : ?><?php endif; // end blog widget area ?>
 </section><!-- end #related -->
-
 <?php get_footer(); ?>

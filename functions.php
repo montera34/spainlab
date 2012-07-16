@@ -174,7 +174,7 @@ function spainlab_widgets_init() {
 		'name' => __( 'Bar 2', 'spainlab' ),
 		'id' => 'bar-2',
 		'description' => 'Barra lateral dos. Descripcion.',
-		'before_widget' => '<span class="widget %2$s">',
+		'before_widget' => '<span class="widget boxes %2$s">',
 		'after_widget' => '</span>',
 		'before_title' => '<h3 class="widgettitle">',
 		'after_title' => '</h3>',
