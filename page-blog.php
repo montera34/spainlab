@@ -70,5 +70,8 @@ endif; ?>
 			</div>
 </div><!-- end post -->
 </div>
+<section id='related'>
+	<?php if ( ! dynamic_sidebar( 'bar-3' ) ) : ?><?php endif; // end blog widget area ?>
+</section><!-- end #related -->
 
 <?php get_footer(); ?>

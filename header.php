@@ -105,7 +105,9 @@ wp_head();
 <body <?php body_class(); ?>>
 
 	<header id="pre" role="banner">
-		<img src="<?php bloginfo('template_directory'); ?>/images/header-spainlab.png" id="image-header">
+		<a href='/' class='' title='home'>
+			<img src="<?php bloginfo('template_directory'); ?>/images/header-spainlab.png" id="image-header">
+		</a>
 		<hgroup id="pre-tit">
 			<h1 id="blogname"><?php echo "<a href='" .$general_options['blogurl']. "' title='Ir al inicio'>" .$general_options['blogname']. "</a>"; ?></h1>
 			<h2 id="blogdesc"><?php echo $general_options['blogdesc']; ?></h2>

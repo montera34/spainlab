@@ -157,6 +157,46 @@ update_user_meta( $user_id, 'feed', $_POST['feed'] );
 }
 
 
+//adding widgets bars
+function spainlab_widgets_init() {
+	// Area 1, located at the front-page.
+	register_sidebar( array(
+		'name' => __( 'Bar 1. Front page', 'spainlab' ),
+		'id' => 'bar-1',
+		'description' => 'Barra lateral uno. Descripcion.',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h2 class="widgettitle">',
+		'after_title' => '</h2>',
+	) );
+	// Area 2, located at the front-page.
+	register_sidebar( array(
+		'name' => __( 'Bar 2', 'spainlab' ),
+		'id' => 'bar-2',
+		'description' => 'Barra lateral dos. Descripcion.',
+		'before_widget' => '<span class="widget %2$s">',
+		'after_widget' => '</span>',
+		'before_title' => '<h3 class="widgettitle">',
+		'after_title' => '</h3>',
+	) );
+	// Area 3, located at the front-page.
+	register_sidebar( array(
+		'name' => __( 'Barra 3. Blog bar', 'spainlab' ),
+		'id' => 'bar-3',
+		'description' => 'Barra lateral tres.',
+		'before_widget' => '<span class="widget %2$s">',
+		'after_widget' => '</span>',
+		'before_title' => '<h3 class="widgettitle">',
+		'after_title' => '</h3>',
+	) );
+	
+
+}
+/** Register sidebars by running twentyten_widgets_init() on the widgets_init hook. */
+add_action( 'widgets_init', 'spainlab_widgets_init' );
+
+
+
 //// CUSTOM DASHBOARD LOGO
 ////hook the administrative header output
 //add_action('admin_head', 'my_custom_logo');
