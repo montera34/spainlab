@@ -246,7 +246,7 @@ article.post{margin:15px 0 15px 0;}
 	width:115px;
 	float:left;
 	display: inline;
-	position: relative;
+	position: absolute;
 	overflow: hidden;
 	/*margin-top: -8px;  buscar mejor solución */
 }

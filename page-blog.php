@@ -5,7 +5,7 @@ Template Name: Blog
 get_header();
 ?>
 
-<div class="part-mid1 page-text">
+<div class="part-mid1">
 <?php // this page loop
 if ( have_posts() ) : 
 	while ( have_posts() ) : the_post();
@@ -33,14 +33,20 @@ endif; ?>
    			global $wp_query;
 			$wp_query->in_the_loop = true;?>
 
-		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-			<a class="" href="<?php the_permalink() ?>" rel="bookmark" title="Permalink to <?php the_title(); ?>">
-				<?php the_title(); ?>
-			</a>
-			<div class="postmetadata"><?php the_time('d \d\e F \d\e Y') ?> <?php the_category(', ') ?> <?the_tags(' &bull;<span class="tags">tags:&nbsp;','  ','</span>' ); ?> <?php the_author_posts_link(); ?><?php comments_popup_link('0&nbsp;comentarios', '1&nbsp;comentario', '%&nbsp;comentarios'); ?>
+		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<h2 class='art-tit'>
+				<a class="" href="<?php the_permalink() ?>" rel="bookmark" title="Permalink to <?php the_title(); ?>">
+					<?php the_title(); ?>
+				</a>
+			</h2>
+			
+			<div class="postmetadata">
+				<?php the_time('F d, Y') ?> Under category <?php the_category(', ') ?> <?the_tags('<span class="tags">tags:&nbsp;','  ','</span>' ); ?> by <?php the_author_posts_link(); ?> <?php comments_popup_link('0&nbsp;comments', '1&nbsp;comment', '%&nbsp;comments'); ?>
 			</div>
-			<?php the_content('Seguir leyendo &raquo;'); ?>
-
+			<div class="page-text">
+				<?php the_content('Continue reading &raquo;'); ?>
+			</div>	
+		</article><!-- end article post -->
 		<?php endwhile; else: ?>		
 
 <?php endif; ?>
@@ -57,19 +63,22 @@ endif; ?>
  
 				if ( !is_single() && ( empty($paged) || $nextpage <= $max_page) ) {
   					$attr = apply_filters( 'next_posts_link_attributes', '' );
- 					 echo '<a href="' . next_posts( $max_page, false ) . "\" $attr>". preg_replace('/&([^#])(?![a-z]{1,8};)/', '&$1', ' &laquo; Entradas anteriores') .'</a>';
+ 					 echo '<a href="' . next_posts( $max_page, false ) . "\" $attr>". preg_replace('/&([^#])(?![a-z]{1,8};)/', '&$1', ' &laquo; Previous entries') .'</a>';
 					}
-					?></div>
-  					<div class="alignright"><?php 
-					if ( !is_single() && $paged > 1 ) {
-  				$attr = apply_filters( 'previous_posts_link_attributes', '' );
-  				echo '<a href="' . previous_posts( false ) . "\" $attr>". preg_replace( '/&([^#])(?![a-z]{1,8};)/', '&$1', 'Nuevas entradas &raquo;' ) .'</a>';
-					}
-				?></div>
-				</div>
+					?>
 			</div>
-</div><!-- end post -->
+  			<div class="alignright"><?php 
+				if ( !is_single() && $paged > 1 ) {
+						$attr = apply_filters( 'previous_posts_link_attributes', '' );
+						echo '<a href="' . previous_posts( false ) . "\" $attr>". preg_replace( '/&([^#])(?![a-z]{1,8};)/', '&$1', 'Newer entries &raquo;' ) .'</a>';
+					}	?>	
+			</div>
+		</div>
+			
+
 </div>
+
+
 <section id='related'>
 	<?php if ( ! dynamic_sidebar( 'bar-3' ) ) : ?><?php endif; // end blog widget area ?>
 </section><!-- end #related -->
