@@ -8,8 +8,8 @@ get_header();
 	<?php // dealing with user log in or sign up
 	include "user.php";
 	?>
-</div>
 
+<div class="part-mid1 page-text">
 <?php // doing the inserts into DB
 if ( is_user_logged_in() && isset($_POST['addcontent-submit']) ) {
 	// if conditions to do inserts
@@ -152,6 +152,7 @@ echo "</pre>";
 
 } // end conditions to do inserts
 ?>
+</div>
 
 <?php // this page content
 if ( have_posts() ) :
@@ -233,9 +234,9 @@ if ( is_user_logged_in() ) {
 	include "user-signup.form.php";
 
 	// HTML output
-	echo "<strong>Login</strong>";
+	echo "<h2>Login</h2>";
 	echo $login_form;
-	echo "<strong>Sign up</strong>";
+	echo "<h2>Sign up</h2>";
 	echo $signup_form;
 
 } // end if user is logged in

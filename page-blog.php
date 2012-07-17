@@ -5,7 +5,7 @@ Template Name: Blog
 get_header();
 ?>
 
-<div class="part-mid1">
+<div id="blog" class="part-mid1">
 <?php // this page loop
 if ( have_posts() ) : 
 	while ( have_posts() ) : the_post();
@@ -52,7 +52,7 @@ $more = 0;
 			</h2>
 			
 			<div class="postmetadata">
-				<?php the_time('F d, Y') ?> Under category <?php the_category(', ') ?> <?the_tags('<span class="tags">tags:&nbsp;','  ','</span>' ); ?> by <?php the_author_posts_link(); ?> <?php comments_popup_link('0&nbsp;comments', '1&nbsp;comment', '%&nbsp;comments'); ?>
+				<?php the_time('F d, Y') ?> Category <?php the_category(', ') ?> <?the_tags('<span class="tags">tags:&nbsp;','  ','</span>' ); ?> by <?php the_author_posts_link(); ?> <?php comments_popup_link('0&nbsp;comments', '1&nbsp;comment', '%&nbsp;comments'); ?>
 			</div>
 			<div class="page-text">
 				<?php the_content('Continue reading &raquo;'); ?>

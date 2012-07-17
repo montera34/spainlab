@@ -227,7 +227,6 @@ header.art-tit {
 	margin:15px 0 0 0;
 }
 
-
 #bio h2 {
 	margin-left:120px;
 }
@@ -240,10 +239,14 @@ header.art-tit {
 	margin:0 0 0 122px;
 }
 
-article.post{
+#blog article.post{
 	margin:15px 0 15px 0;
 	margin: 15px 0 50px 0;
 	border-bottom: 5px solid #AAA;
+}
+
+#blog article.post:hover{
+	background-color:#EEE;
 }
 
 #related h2, #related .sub-tit-1, #related .sub-tit-1{
@@ -288,23 +291,22 @@ article.post{
 
 .single-thumb {
 	float: left;
-	width: 50px;
-	height: 50px;
-	padding: 2px;
-}
-.single-thumb {
-	height: 100px;
-	width: 100px;
+	height: 80px;
+	width: 80px;
 	float: left;
 	padding: 3px;
 }
 .single-thumb:hover {
 	cursor: pointer;
 }
+.single-thumb-video img{ /*style set in  loop.attachment.php */
+	height: 80px !important; /* this will resize nont cuadrados to cuadrados thumbnails.*/
+	width: 80px  !important;
+}
 
 
 #selector {
-	bottom: -125px !important; /* revisar la posición del selector. no devbería ir así */
+/*	bottom: -125px !important;  revisar la posición del selector. no devbería ir así */
 }
 
 #addcontent label {
@@ -325,16 +327,22 @@ article.post{
 }
 
 .boxes {
-	margin-bottom:10px;
-	width:400px;
-	height:100px;	
+	margin-bottom: 10px;
+	width: 350px;
+	height: 80px;
 	display: block;
-	padding:8px;
+	padding: 14px;
 }
 
 fieldset {
 	margin-bottom:10px;
 }
+
+#comments, #respond{
+	margin:10px 0 0 0;
+}
+
+
 
 footer {
 	clear:both;
@@ -369,8 +377,9 @@ body {
 	color:white;	
 	background-color:#F00;
 }
-.submit-button a {
-	background-color: grey;
+.submit-button a, #login-submit, #signup-submit, #submit {
+	background-color:grey; 
+	padding:5px;
 	color:#FFF;
 	-webkit-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -380,6 +389,9 @@ body {
 	border-radius: 5px;
 }
 
+.submit-button a:hover, #login-submit:hover, #signup-submit:hover, #submit:hover{
+	background-color:red;
+}
 
 #s {
 	border: 1px solid black;
@@ -421,8 +433,12 @@ h2.art-tit a:hover {
 }
 
 .boxes,.boxes .textwidget a {
-	background-color:grey;
+	background-color:#999;
 	color:white;
+}
+
+.boxes:hover {
+	background-color:#AAA;
 }
 
 footer {
@@ -486,6 +502,13 @@ h2.art-tit a {
 .page-text {
 	font-size: 1.2em;
 	line-height: 1.6em;
+	margin-top: 12px;
+}
+
+.page-text h2 {
+	font-size: 1.6em;
+	line-height: 1.6em;
+	font-weight:bold;
 }
 
 
@@ -501,6 +524,8 @@ h2.art-tit a {
 .sub-tit-1 {
 	font-size:1.5em;
 	font-weight:bold;
+	margin-top: 5px;
+	display: block;
 }
 
 .sub-tit-2 {
@@ -509,7 +534,7 @@ h2.art-tit a {
 }
 
 label {
-	font-size:1.3em;
+	font-size:1.0em;
 }
 
 .submit-button a {
@@ -517,16 +542,23 @@ label {
 	font-size:1.5em;
 }
 
-.boxes h3 {
+.boxes h3, .widgettitle {
 	font-size: 1.8em;
-line-height:1.8em;
+	line-height:1.8em;
 	
 }
 
 .boxes .textwidget, .textwidget {
 	font-size: 1.4em;
 line-height:1.6em;
-	
+}
+
+
+  /*comments*/
+.respond_meta, .comment_qty{
+	font-size: 1.4em;
+	line-height:1.6em;
+	font-weight:bold;
 }
 
 

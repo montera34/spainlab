@@ -10,10 +10,10 @@ if ( have_posts() ) :
 		} else {
 			$max_w = "500";
 			include "loop.video.php";
-
+			//defining size of thumbnails in gallery
 			$img_post_parent = get_the_ID();
 			$img_amount = -1;
-			$mini_size = array(100,100);
+			$mini_size = array(80,80);
 			$medium_size = "medium";
 			$custom_width = "500";
 			include "loop.attachment.php";
@@ -22,7 +22,9 @@ if ( have_posts() ) :
 		include "loop.single.php";
 
 		if ( get_post_type() == $general_options['pt_r'] || get_post_type() == 'post' ) {
+			echo "<div class='part-mid1'>";
 			comments_template();
+			echo "</div>";
 		}
 
 	endwhile;

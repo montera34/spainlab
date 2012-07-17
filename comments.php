@@ -69,7 +69,7 @@ if ( isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['
         <div class="respond_meta">
 		<?php comment_form_title( 'Submit comment', 'Respond to %s' ); ?>
 	</div>
-        <div class="comment_form">
+        <div class="comment_form page-text">
 
         <?php if ( get_option('comment_registration') && !$user_ID ) : ?>
             <p class="comment_message">You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php echo urlencode(get_permalink()); ?>">logged in</a> to post a comment.</p>
@@ -85,17 +85,18 @@ if ( isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['
                     <div class="user_data">
 				<fieldset>
 					<?php if($req) echo "<span class='req'>*</span>"; ?>
-					<label for="author">Name</label>
-					<input type="text" name="author" id="author" value="" size="22" tabindex="1" />  
+					
+					<input type="text" name="author" id="author" value="" size="22" tabindex="1" /> 
+					<label for="author">Name</label>					
 				</fieldset>
 				<fieldset>
 					<?php if($req) echo "<span class='req'>*</span>"; ?>
-					<label for="email">Email (won't be publish) </label>
 					<input type="text" name="email" id="email" size="22" tabindex="2" value="" />
+					<label for="email">Email (won't be publish) </label>
 				</fieldset>
 				<fieldset>
+					<input type="text" name="url" id="url" size="22" tabindex="3" value="" placeholder="http://" />
 					<label for="url">Website</label>
-					<input type="text" name="url" id="url" size="22" tabindex="3" value="" />
 				</fieldset>
                     </div>
                 <?php endif; ?>

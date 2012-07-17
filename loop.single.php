@@ -36,9 +36,22 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 	// author name
 	$author = get_the_title();
 
-} elseif ( get_post_type() == $general_options['pt_r'] || get_post_type() == 'post' ) {
+} elseif ( get_post_type() == $general_options['pt_r']  ) {
 //} elseif ( get_post_type() == $general_options['pt_r'] || get_post_type() == 'post' ) {
-	// if remotes post type or post
+	// if remotes post type 
+	// author bio
+	$bio = get_the_author_meta('description');
+	// author name
+	if ( get_the_author_meta('first_name') != '' || get_the_author_meta('last_name') != '' ) {
+		$author = get_the_author_meta('first_name'). " " .get_the_author_meta('last_name');
+	} else { $author = get_the_author_meta('display_name'); }
+	// author thumb
+	$post_thumbimg = get_avatar( get_the_author_meta('ID'), 128 );
+	// post subtitle
+	$post_author = get_the_author(); 
+
+} else {
+	//if post type: get_post_type() == 'post'
 	// author bio
 	$bio = get_the_author_meta('description');
 	// author name
@@ -50,15 +63,23 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 	// post subtitle
 	$post_author = get_the_author(); 
 	$post_time = get_the_time('F d, Y');
-	$post_category = get_the_category();
-		if($category[0]){
-		$post_category_first = '<a href="'.get_category_link($category[0]->term_id ).'">'.$category[0]->cat_name.'</a>';
-		}
+	//$post_category = get_categories();
+	//$post_category = the_category(', ');
+	
+	// test... fix this. just trying to output the post categories
+	//$categories=  get_categories();
+	//foreach ($categories as $category) {
+	//	$post_category_1 = $category->name;
+	//	echo $option;
+	//  }
+	
+	//$post_category_1= $post_category[0];
+	//	if($category[0]){
+	//	$post_category_first = '<a href="'.get_category_link($category[0]->term_id ).'">'.$category[0]->cat_name.'</a>';
+	//	}
 	$post_tags = get_the_tags('<span class="tags">tags:&nbsp;','  ','</span>' );
-	$post_metadata = "".$post_time. " Under category".$post_category_first. "".$post_tags. "";
+	$post_metadata = "".$post_time. " ".$post_category. "".$post_tags. "";
 	$post_subtit = "Posted by <em>" .$post_author. "</em> " .$post_metadata. " " ;
-} else {
-// 
 }
 ?>
 

@@ -85,7 +85,7 @@ if ( isset($video_code) ) {
 		$video_out .= "<div class='zoom-item'>" .$video. "</div>";
 	}
 	foreach ( $video_thumbs as $vthumb ) {
-		$video_thumbs_out .= "<div class='single-thumb'>" .$vthumb. "</div>";
+		$video_thumbs_out .= "<div class='single-thumb single-thumb-video'>" .$vthumb. "</div>";
 	}
 } // end if video attached
 
