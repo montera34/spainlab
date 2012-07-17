@@ -180,12 +180,12 @@ function spainlab_widgets_init() {
 		'before_title' => '<h3 class="widgettitle">',
 		'after_title' => '</h3>',
 	) );
-	// Area 3, located at the front-page.
+	// Area 3, located at the blog.
 	register_sidebar( array(
 		'name' => __( 'Barra 3. Blog bar', 'spainlab' ),
 		'id' => 'bar-3',
 		'description' => 'Barra lateral tres.',
-		'before_widget' => '<span class="widget %2$s">',
+		'before_widget' => '<span class="widget-blog %2$s">',
 		'after_widget' => '</span>',
 		'before_title' => '<h3 class="widgettitle">',
 		'after_title' => '</h3>',

@@ -419,7 +419,8 @@ body {
 .art-tit h2 a:hover,
 #mainmenu1 li:hover a,
 #mainmenu2 li a:hover,
-h2.art-tit a:hover {
+h2.art-tit a:hover,
+.widget-blog ul li a:hover {
 	color: #FFF;
 	background-color: #FF0000;
 }
@@ -551,6 +552,13 @@ label {
 .boxes .textwidget, .textwidget {
 	font-size: 1.4em;
 line-height:1.6em;
+}
+
+.widget-blog ul li a  {
+	text-decoration:none;
+	color:black;
+	font-size:1.2em;
+	line-height:1.3em;
 }
 
 
