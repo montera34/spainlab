@@ -212,7 +212,8 @@ if ( is_user_logged_in() ) {
 
 	} else {
 		// form vars
-		$action_slug = $wp_query->query_vars['name'];
+		//$action_slug = $wp_query->query_vars['name'];
+		$action_slug = get_permalink();
 
 		include "content-add.form.php";
 

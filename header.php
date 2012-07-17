@@ -115,22 +115,33 @@ wp_head();
 		<div id="navigation">
 			<?php // main navigation menu 1
 			$menu_slug = "header-left-menu";
-			if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_slug ] ) ) {
-				$menu_vars = wp_get_nav_menu_object( $locations[$menu_slug] );
-				//$args = array();
-				$menu_items = wp_get_nav_menu_items($menu_vars->term_id);
-				$menu_out = "<nav id='mainmenu1' role='navigation'>";
-				//foreach ( (array) $menu_items as $key->$item ) {
-				foreach ( $menu_items as $item ) {
-					$item_tit = $item->title;
-					$item_url = $item->url;
-					$item_class1 = $item->classes[0];
-					$item_class2 = $item->classes[1];
-					$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2' title='$item_tit'>$item_tit</a></div>";
-				}
-				$menu_out .= "</nav><!-- #mainmenu1 -->";
-				echo $menu_out;
-			} // end if there is items in this menu
+			$args = array(
+				'theme_location' => $menu_slug,
+				'container' => 'false',
+				'menu_id' => 'mainmenu1',
+				'menu_class' => 'menu',
+			);
+				wp_nav_menu( $args );
+//			if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_slug ] ) ) {
+//				$menu_vars = wp_get_nav_menu_object( $locations[$menu_slug] );
+//				//$args = array();
+//				$menu_items = wp_get_nav_menu_items($menu_vars->term_id);
+//				$menu_out = "<nav id='mainmenu1' role='navigation'>";
+//				//foreach ( (array) $menu_items as $key->$item ) {
+//				foreach ( $menu_items as $item ) {
+//					$item_tit = $item->title;
+//					$item_url = $item->url;
+//					$item_class1 = $item->classes[0];
+//					$item_class2 = $item->classes[1];
+//					$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2' title='$item_tit'>$item_tit</a></div>";
+//				}
+//				$menu_out .= "</nav><!-- #mainmenu1 -->";
+//				echo $menu_out;
+//
+//		echo "<pre>";
+//		print_r($item);
+//		echo "</pre>";
+//			} // end if there is items in this menu
 			?>
 
 			<?php 

@@ -114,6 +114,7 @@ function register_my_menu() {
 		);
 	}
 }
+
 // to add excerpt box to pages
 add_action( 'init', 'my_add_excerpts_to_pages' );
 function my_add_excerpts_to_pages() {
@@ -195,6 +196,35 @@ function spainlab_widgets_init() {
 /** Register sidebars by running twentyten_widgets_init() on the widgets_init hook. */
 add_action( 'widgets_init', 'spainlab_widgets_init' );
 
+/*** Comment list ***/
+
+function commentlist($comment, $args, $depth) {
+    $GLOBALS['comment'] = $comment;
+    ?>
+    <li id="li-comment-<?php comment_ID() ?>">
+	<?php if ( '0' != $comment->comment_parent ) { $avatar_size = 39; } ?>
+	<div class="comment-avatar"><?php echo get_avatar( $comment, $avatar_size ); ?></div>
+        <ul class="comment_meta">
+		<li><?php printf( __('%1$s'), get_comment_author_link()); ?></li>
+		<li><?php printf( __('%1$s'), get_comment_date()); ?>, <?php printf( __('%1$s'), get_comment_time()); ?></li>
+		<li><?php comment_reply_link( array_merge( $args, array( 'reply_text' => 'Reply', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ) ;?></li>
+	</ul>
+        <div class="comment_text"><?php comment_text() ?></div>
+        <div class="clear"></div>
+<?php
+}
+
+/*** human comments counter ***/
+function human_comment_count() {
+	global $wpdb;
+	global $post;
+	$postid = $post->ID;
+	$count = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_type = '' AND comment_approved = '1' AND comment_post_ID = '$postid'";
+	$counter = $wpdb->get_var($count);
+	if ( $counter == 0 ) { echo "No comments"; }
+	elseif ( $counter == 1 ) { echo "One comment"; }
+	else { echo "$counter comments"; }
+}
 
 
 //// CUSTOM DASHBOARD LOGO

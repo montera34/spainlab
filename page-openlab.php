@@ -9,7 +9,23 @@ get_header();
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
 		include("loop.page.php");
+
+		// submit form link
+		$post_parent = get_the_ID();
+		$args = array(
+			'child_of' => $post_parent,
+			'parent' => $post_parent,
+		);
+		$children = get_pages($args);
+		foreach ( $children as $child ) {
+			$child_tit = $child->post_title;
+			$child_url = get_page_link( $child->ID );
+			echo "
+				<div class='submit-button'><a title='" .$child_tit. "' href='" .$child_url. "'>" .$child_tit. "</a></div>";
+		}
 	endwhile;
+
+
 else :
 endif; ?>
 
@@ -22,7 +38,7 @@ $args = array(
 );
 $related_query = new WP_Query( $args );
 if ( $related_query->have_posts() ) :
-	echo "<section id='related'>";
+	echo "<section id='openlab'>";
 	while ( $related_query->have_posts() ) : $related_query->the_post();
 		include("loop.related.php");
 	endwhile;

@@ -6,17 +6,25 @@ get_header();
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
 
-		$max_w = "500";
-		include "loop.video.php";
+		if ( get_post_type() == 'post' ) {
+		} else {
+			$max_w = "500";
+			include "loop.video.php";
 
-		$img_post_parent = get_the_ID();
-		$img_amount = -1;
-		$mini_size = array(100,100);
-		$medium_size = "medium";
-		$custom_width = "500";
-		include "loop.attachment.php";
+			$img_post_parent = get_the_ID();
+			$img_amount = -1;
+			$mini_size = array(100,100);
+			$medium_size = "medium";
+			$custom_width = "500";
+			include "loop.attachment.php";
+		}
 
 		include "loop.single.php";
+
+		if ( get_post_type() == $general_options['pt_r'] || get_post_type() == 'post' ) {
+			comments_template();
+		}
+
 	endwhile;
 
 else :
@@ -40,11 +48,8 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 	if ( $related_query->have_posts() ) :
 		echo "
 		<section id='related'>
-			<header class='section-tit sub-tit-1'><h2>" .$rl_tit. "</h2></header>
-		";
+			<header class='section-tit sub-tit-2'><h2>" .$rl_tit. "</h2></header>";
 		while ( $related_query->have_posts() ) : $related_query->the_post();
-//		echo $wp_query->query_vars['name'];
-	
 			include "loop.related.php";
 		endwhile;
 		echo "</section><!-- end #related -->";

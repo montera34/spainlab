@@ -27,10 +27,11 @@ $rl_tit = "";
 $args = array(
 	'posts_per_page' => 1,
 	'post_type' => $pt,
+	'orderby' => 'rand',
 );
 $random_query = new WP_Query( $args );
 if ( $random_query->have_posts() ) :
-	echo "<section id='single-gallery'>";
+	echo "<section id='single-gallery' class='part-mid1'>";
 	while ( $random_query->have_posts() ) : $random_query->the_post();
 		$max_w = "500";
 		include "loop.video.php";

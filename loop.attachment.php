@@ -144,4 +144,5 @@ if ( isset($img_medium) && isset($img_mini) ) {
 	// here is the place if you want to define any var or any alternative text:
 	// $attach_out = "This content doesn't have any image yet, but you can upload some.";
 }
+
 ?>

@@ -1,5 +1,6 @@
 <?php
 // errors code construction
+echo $action_slug;
 if ( $form_errors[0] != '' ) {
 	$form_error_code = "";
 	foreach ( $form_errors as $form_error ) {
@@ -7,14 +8,15 @@ if ( $form_errors[0] != '' ) {
 	}
 }
 	$add_form = "<ul>" .$form_error_code. "</ul>
-	<form id='addcontent' name='addcontent' method='post' action='" .$general_options['blogurl']. "/" .$action_slug. "' enctype='multipart/form-data'>
+	<form id='addcontent' name='addcontent' method='post' class='part-mid1' action='" .$action_slug. "' enctype='multipart/form-data'>
 		<fieldset class='required" .$form_tit_class. "'>
-			<input id='addcontent-tit' name ='addcontent-tit' type='text' value='" .$form_tit. "' />
 			<label>Project name</label>
+			<input id='addcontent-tit' name ='addcontent-tit' type='text' value='" .$form_tit. "' />
+			
 		</fieldset>
 		<fieldset class='required" .$form_desc_class. "'>
-			<textarea id='addcontent-desc' name='addcontent-desc' cols='45' rows='10'>" .$form_desc. "</textarea>
 			<label>Description</label>
+			<textarea id='addcontent-desc' name='addcontent-desc' cols='45' rows='10'>" .$form_desc. "</textarea>
 		</fieldset>
 		<fieldset id='addcontent1' class='clonedField'>
 			<label>Image</label>

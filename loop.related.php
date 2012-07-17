@@ -41,6 +41,10 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 		$post_thumbimg = $img_mini_vars[0];
 		$post_thumbimg = "<img src='" .$post_thumbimg. "' alt='Author image' />";
 	}
+	// comments
+	if ( comments_open() && ! post_password_required() ) {
+		$post_comments = human_comment_count();
+	} else { unset($post_comments); }
 
 } elseif ( get_post_type() == $general_options['pt_s'] ) {
 	// if scientific post type
@@ -89,10 +93,14 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 		echo "<h2><a href='" .$post_perma. "' title='Permalink to " .$post_tit. "' rel='bookmark'>" .$post_tit. "</a></h2>";
 		echo "<span class='sub-tit-1'>" .$post_subtit. "</span>"; 
 		if ($post_excerpt) {
-			echo "<br><span class='page-text excerpt'>" .$post_excerpt. "</span>"; //only used for remotes
+			echo "<br /><span class='page-text excerpt'>" .$post_excerpt. "</span>"; //only used for remotes
 		}
 		?>
 	</header><!-- end .art-pre -->
+
+	<?php if ( comments_open() && !post_password_required() && isset($post_comments) ) {
+		echo "<section class='post_comments'>" .$post_comments. "</section>";
+	} ?>
 
 </article>
 
