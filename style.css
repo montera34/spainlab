@@ -179,6 +179,7 @@ body {
 	opacity: 0.9;
 }
 
+
 #navigation {
 	width: 960px;
 	height:18px;
@@ -186,6 +187,7 @@ body {
 
 #mainmenu1 {
 	float:left;
+
 	width: 500px;
 }
 #mainmenu2 {
@@ -243,6 +245,7 @@ body {
 
 #bio, #related { 
 	margin: 0 0 0 540px;
+
 	width: 420px;
 	padding-bottom: 60px;
 }
@@ -308,6 +311,7 @@ header.art-tit {
 	margin:0 0 0 122px;
 }
 
+
 #blog article.post,
 #academic article.post {
 	margin: 0 0 50px 0;
@@ -315,6 +319,7 @@ header.art-tit {
 	clear: both;
 	padding
 }
+
 
 #blog article.post:hover,
 #academic article.post:hover {
@@ -390,6 +395,7 @@ header.art-tit {
 	color: #000;
 }
 
+
 .lc,
 .unlc,
 .status {
@@ -408,12 +414,14 @@ header.art-tit {
 .single-thumb:hover {
 	cursor: pointer;
 }
+
 .single-thumb-video img { /*style set in loop.attachment.php */
 	height: 48px; /* this will resize nont cuadrados to cuadrados thumbnails.*/
 }
 
 
 #selector {
+
 /*	bottom: -125px !important; revisar la posición del selector. no devbería ir así */
 }
 
@@ -427,6 +435,7 @@ header.art-tit {
 #addcontent textarea {
 	margin-left:30px;
 }*/
+
 
 .submit-button {
 	margin-top: 60px;
@@ -529,7 +538,6 @@ header.art-tit {
 	text-align: right;
 }
 
-
 footer {
 	clear:both;
 	padding:5px 0 0 0;
@@ -563,6 +571,7 @@ body {
 	color:white;	
 	background-color:#F00;
 }
+
 #login-submit, #signup-submit, #submit {
 	background-color:grey; 
 	padding:5px;
@@ -575,6 +584,7 @@ body {
 	border-radius: 5px;
 }
 
+
 #login-submit:hover, #signup-submit:hover, #submit:hover {
 	background-color:red;
 }
@@ -582,6 +592,7 @@ body {
 #s {
 	border: 1px solid black;
 }
+
 
 #related .architects, #bio .architects, #related .scientifics, #openlab .remotes, #related .post {
 	border-top: 3px solid black;
@@ -608,6 +619,7 @@ body {
 /*.art-tit h2 a:hover, #mainmenu1 li:hover, #mainmenu2 div:hover, h2.art-tit a:hover {
 	background-color:#FF0000;
 }*/
+
 .widget-blog a {
 	color: #666;
 	font-weight: bold;
@@ -635,6 +647,7 @@ h2.art-tit a:hover,
 #academic h2.art-tit a {
 	display: block;
 }
+
 .postmetadata, .postmetadata a {
 	color:#666;
 }
@@ -721,6 +734,7 @@ hgroup h1 {
 }
 
 #mainmenu1 li a:link, #mainmenu1 li a:visited,
+
 #mainmenu2 li a:link, #epimenu li a:link {
 	text-decoration:none;
 	font-weight: bold;
@@ -765,6 +779,7 @@ h2.art-tit a {
 	line-height: 1.6em;
 	margin-top: 12px;
 }
+
 .widget-blog .widgettitle {
 	color: #2f2f2f;
 	font-weight: bold;
@@ -787,6 +802,7 @@ h2.art-tit a {
 
 .sub-tit-1 {
 	font-size:1.5em;
+
 	line-height: 1em;
 /*	font-weight:bold;*/
 	margin-top: 5px;
@@ -802,7 +818,7 @@ label {
 	font-size:1em;
 }
 
-.boxes h3 {
+.boxes h3, .widgettitle {
 	font-size: 1.8em;
 	line-height:1.8em;
 	
@@ -810,7 +826,7 @@ label {
 
 .boxes .textwidget {
 	font-size: 1.4em;
-line-height:1.6em;
+	line-height:1.6em;
 }
 
 .wp-caption-text{

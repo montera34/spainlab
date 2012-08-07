@@ -44,7 +44,6 @@ global $more;    // Declare global $more (before the loop). "para que seguir ley
 $more = 0; 
 		include "loop.post.php";
 ?>
-	
 		<?php endwhile; else: ?>		
 
 <?php endif; ?>

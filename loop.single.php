@@ -51,6 +51,7 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 	// post subtitle
 	$post_author = get_the_author(); 
 
+
 } elseif ( get_post_type() == 'attachment'  ){
 	//if post type: is an attachment
 	// author bio

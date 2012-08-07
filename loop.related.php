@@ -43,6 +43,7 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 	} else { unset($post_thumbimg); }
 
 
+
 } elseif ( get_post_type() == $general_options['pt_s'] ) {
 	// if scientific post type
 	// related tit
@@ -145,11 +146,13 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 		echo "<span class='sub-tit-1'>" .$post_subtit. "</span>"; 
 		if ($post_excerpt) {
 			echo "<span class='page-text excerpt'$post_excerpt_stl>" .$post_excerpt. "</span>"; //only used for remotes and curatorial commite (about subpages)
+
 		}
 		?>
 	</header><!-- end .art-pre -->
 
 	<?php // comments
+
 	if ( get_post_type() == $general_options['pt_r'] && comments_open() && ! post_password_required() ) {
 		$post_perma = $post_perma. "#respond";
 	?>
@@ -158,6 +161,7 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 			<div class="post_meta_item"><?php GetWtiLikePost();?></div>
 		</section>
 	<?php } ?>
+
 
 </article>
 

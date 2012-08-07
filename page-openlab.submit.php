@@ -9,6 +9,7 @@ get_header();
 include "user.php";
 ?>
 
+<div class="part-mid1 page-text">
 <?php // doing the inserts into DB
 if ( is_user_logged_in() && isset($_POST['addcontent-submit']) ) {
 	// if conditions to do inserts
@@ -151,6 +152,7 @@ if ( is_user_logged_in() && isset($_POST['addcontent-submit']) ) {
 
 } // end conditions to do inserts
 ?>
+</div>
 
 <div class="part-mid1 page-text">
 <?php // this page content
@@ -256,6 +258,7 @@ if ( is_user_logged_in() ) {
 	";
 
 //	echo "<h2>Login</h2>";
+
 	echo $login_form;
 	echo "<h2>Sign up</h2>";
 	echo $signup_form;

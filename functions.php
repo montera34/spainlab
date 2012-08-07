@@ -222,6 +222,7 @@ function human_comment_count() {
 	$count = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_type = '' AND comment_approved = '1' AND comment_post_ID = '$postid'";
 	$counter = $wpdb->get_var($count);
 	if ( $counter == 0 ) { echo "No comments"; }
+
 	elseif ( $counter == 1 ) { echo "1 comment"; }
 	else { echo "$counter comments"; }
 }
@@ -249,8 +250,6 @@ function human_comment_count() {
 	function get_next_image_link() {
 		return get_adjacent_image_link(false,'Next &raquo;' );
 	}
-
-
 
 
 //// CUSTOM DASHBOARD LOGO
