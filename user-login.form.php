@@ -1,9 +1,9 @@
 <?php
 $login_form = "
-<form id='login' name='login' method='post' action='" .$general_options['blogurl']. "/" .$action_slug. "'>
+<form id='login' name='login' method='post' action='" .$action_slug. "'>
 	<fieldset>
-		<input id='login-username' name='login-username' type='text' value='' />
-		<label>Username</label>
+	<input id='login-username' name='login-username' type='text' value='' />
+	<label>Username</label>
 	</fieldset>
 	<fieldset>
 		<input id='login-pass' name='login-pass' type='password' value='' />

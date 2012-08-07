@@ -33,7 +33,7 @@ function create_post_type() {
 		'menu_icon' => get_template_directory_uri() . '/images/icon-post.type-integrantes.png',
 		'hierarchical' => true, // if true this post type will be as pages
 		'query_var' => true,
-		'supports' => array('title', 'editor','excerpt','custom-fields','author','page-attributes'),
+		'supports' => array('title', 'editor','excerpt','custom-fields','author','page-attributes','trackbacks'),
 		'rewrite' => array('slug'=>'architect','with_front'=>false),
 		'can_export' => true,
 		'_builtin' => false,
@@ -60,10 +60,10 @@ function create_post_type() {
 		'exclude_from_search' => false,
 		'menu_position' => 5,
 		'menu_icon' => get_template_directory_uri() . '/images/icon-post.type-integrantes.png',
-		'hierarchical' => true, // if true this post type will be as pages
+		'hierarchical' => false, // if true this post type will be as pages
 		'query_var' => true,
-		'supports' => array('title', 'editor','excerpt','custom-fields','author','page-attributes'),
-		'rewrite' => array('slug'=>'remote','with_front'=>false),
+		'supports' => array('title', 'editor','excerpt','custom-fields','author','comments','trackbacks'),
+		'rewrite' => array('slug'=>'project','with_front'=>false),
 		'can_export' => true,
 		'_builtin' => false,
 		'_edit_link' => 'post.php?post=%d',
@@ -91,7 +91,7 @@ function create_post_type() {
 		'menu_icon' => get_template_directory_uri() . '/images/icon-post.type-integrantes.png',
 		'hierarchical' => true, // if true this post type will be as pages
 		'query_var' => true,
-		'supports' => array('title', 'editor','excerpt','custom-fields','author','page-attributes'),
+		'supports' => array('title', 'editor','excerpt','custom-fields','author','page-attributes','trackbacks'),
 		'rewrite' => array('slug'=>'scientific','with_front'=>false),
 		'can_export' => true,
 		'_builtin' => false,
@@ -114,6 +114,7 @@ function register_my_menu() {
 		);
 	}
 }
+
 // to add excerpt box to pages
 add_action( 'init', 'my_add_excerpts_to_pages' );
 function my_add_excerpts_to_pages() {
@@ -179,13 +180,13 @@ function spainlab_widgets_init() {
 		'before_title' => '<h3 class="widgettitle">',
 		'after_title' => '</h3>',
 	) );
-	// Area 3, located at the front-page.
+	// Area 3, located at the blog.
 	register_sidebar( array(
 		'name' => __( 'Barra 3. Blog bar', 'spainlab' ),
 		'id' => 'bar-3',
 		'description' => 'Barra lateral tres.',
-		'before_widget' => '<span class="widget %2$s">',
-		'after_widget' => '</span>',
+		'before_widget' => '<div class="widget-blog %2$s">',
+		'after_widget' => '</div>',
 		'before_title' => '<h3 class="widgettitle">',
 		'after_title' => '</h3>',
 	) );
@@ -194,6 +195,61 @@ function spainlab_widgets_init() {
 }
 /** Register sidebars by running twentyten_widgets_init() on the widgets_init hook. */
 add_action( 'widgets_init', 'spainlab_widgets_init' );
+
+/*** Comment list ***/
+
+function commentlist($comment, $args, $depth) {
+    $GLOBALS['comment'] = $comment;
+    ?>
+    <li id="li-comment-<?php comment_ID() ?>">
+	<?php if ( '0' != $comment->comment_parent ) { $avatar_size = 39; } ?>
+	<div class="comment-avatar"><?php echo get_avatar( $comment, $avatar_size ); ?></div>
+        <ul class="comment_meta">
+		<li><?php printf( __('%1$s'), get_comment_author_link()); ?></li>
+		<li><?php printf( __('%1$s'), get_comment_date()); ?>, <?php printf( __('%1$s'), get_comment_time()); ?></li>
+		<li><?php comment_reply_link( array_merge( $args, array( 'reply_text' => 'Reply', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ) ;?></li>
+	</ul>
+        <div class="comment_text"><?php comment_text() ?></div>
+        <div class="clear"></div>
+<?php
+}
+
+/*** human comments counter ***/
+function human_comment_count() {
+	global $wpdb;
+	global $post;
+	$postid = $post->ID;
+	$count = "SELECT COUNT(*) FROM $wpdb->comments WHERE comment_type = '' AND comment_approved = '1' AND comment_post_ID = '$postid'";
+	$counter = $wpdb->get_var($count);
+	if ( $counter == 0 ) { echo "No comments"; }
+	elseif ( $counter == 1 ) { echo "1 comment"; }
+	else { echo "$counter comments"; }
+}
+
+
+//Add echo functionality to attachment links. Taken from http://www.seodenver.com/get-images-wordpress-functions/
+// These functions are copied directly from wp-includes/media.php
+// and modified to return the result instead of echo it.
+	function get_adjacent_image_link($prev = true, $text = "test") {
+		global $post;
+		$post = get_post($post);
+		$attachments = array_values(get_children( array('post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID') ));
+		foreach ( $attachments as $k => $attachment )
+			if ( $attachment->ID == $post->ID )
+				break;
+		$k = $prev ? $k - 1 : $k + 1;
+		if ( isset($attachments[$k]) )
+			return wp_get_attachment_link($attachments[$k]->ID, '' , true, false, $text);
+	}
+
+	function get_previous_image_link() {
+		return get_adjacent_image_link(true,'&laquo; Prev' );
+	}
+
+	function get_next_image_link() {
+		return get_adjacent_image_link(false,'Next &raquo;' );
+	}
+
 
 
 

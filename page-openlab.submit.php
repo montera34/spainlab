@@ -4,11 +4,10 @@ Template Name: Open Lab submit form
 */
 get_header();
 ?>
-<div class="part-mid1 page-text">
-	<?php // dealing with user log in or sign up
-	include "user.php";
-	?>
-</div>
+
+<?php // dealing with user log in or sign up
+include "user.php";
+?>
 
 <?php // doing the inserts into DB
 if ( is_user_logged_in() && isset($_POST['addcontent-submit']) ) {
@@ -33,9 +32,9 @@ if ( is_user_logged_in() && isset($_POST['addcontent-submit']) ) {
 
 	// checking if all the images have the right format and size
 	foreach ( $_FILES as $file ) {
-echo "<pre>";
-print_r($file);
-echo "</pre>";
+//echo "<pre>";
+//print_r($file);
+//echo "</pre>";
 		if ( $file['type'] == 'image/jpeg' || $file['type'] == 'image/png' || $file['type'] == 'image/gif' || $file['type'] == '' ) {}
 		else { $fail1 = "type"; }
 //		if ( $file['size'] > '2000000' ) { $fail2 = "size"; }
@@ -153,10 +152,11 @@ echo "</pre>";
 } // end conditions to do inserts
 ?>
 
+<div class="part-mid1 page-text">
 <?php // this page content
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
-		include("loop.page.php");
+//		include("loop.page.php");
 	endwhile;
 else :
 endif; ?>
@@ -164,55 +164,64 @@ endif; ?>
 <?php // add content form
 if ( is_user_logged_in() ) {
 	// if user is logged in
-
+	// page header
+	$post_tit = "Submit your project";
+	$subtitle = "Send one of your projects and it will be published in our Open Lab section";
+	echo "
+	<article>
+		<header class='art-pre'><h1 class='art-tit'>" .$post_tit. "</h1>
+			<span class='sub-tit-1'>" .$subtitle. "</span>
+		</header>
+	";
 	if ( $post_id != 0 ) {
 		// if a content has just inserted
-		echo "<div>Your content has been sumbited successfully</div>";
-		echo "Your remote has been stored. If everything in your submit is accurate, an editor will publish your content.";
-		echo "<br />";
-		echo "User ID: " .$user_id;
-		echo "<br />";
-		echo "Content tit: " .$form_tit;
-		echo "<br />";
-		echo "Content desc: " .$form_desc;
-		echo "<br />";
-		echo "Image URL: " .$img_url;
-		echo "<br />";
-		echo "Image: <img src='" .$img_url. "' />";
-		echo "Video ID: " .$form_video;
-		echo "<br />";
-
-	if ( $form_videoapi == 'vimeo' ) {
-	// if vimeo video
-	$video_info = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$form_video.php"));
-	$video_thumb = $video_info[0]['thumbnail_medium'];
-
-	$video_w = $video_info[0]['width'];
-	$video_h = $video_info[0]['height'];
-	if ( $video_w > 500 ) {
-		$video_w = 500;
-		$video_h = 300;
-	}
-	$video_code = "Video: <iframe src='http://player.vimeo.com/video/$form_video?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff' width='$video_w' height='$video_h' frameborder='0' webkitAllowFullScreen allowFullScreen></iframe>";
-	echo $video_code;
-	} // end if Vimeo video
-
-	if ( $form_videoapi == 'youtube' ) {
-	// if youtube video
-	$video_id = $form_video;
-			// thumb de alta calidad
-			$video_thumb_hq = "http://img.youtube.com/vi/" .$video_id. "/hqdefault.jpg";
-			// thumb de calidad baja
-			$video_thumb = "http://img.youtube.com/vi/" .$video_id. "/default.jpg";
-	$video_w = "500"; // definimos la que nos interese
-	$video_h = $video_w * 0.8235;
-	$video_code = "<iframe src='http://www.youtube.com/embed/$video_id' frameborder='0' width='$video_w' height='$video_h' allowfullscreen></iframe>";
-	echo $video_code;
-	}
+		echo "<section class='page-text'><p>Your content has been sumbited successfully</p>";
+		echo "<p>Your remote has been stored. If everything in your submit is accurate, an editor will publish your content as soon as possible.</p></section>";
+//		echo "<br />";
+//		echo "User ID: " .$user_id;
+//		echo "<br />";
+//		echo "Content tit: " .$form_tit;
+//		echo "<br />";
+//		echo "Content desc: " .$form_desc;
+//		echo "<br />";
+//		echo "Image URL: " .$img_url;
+//		echo "<br />";
+//		echo "Image: <img src='" .$img_url. "' />";
+//		echo "Video ID: " .$form_video;
+//		echo "<br />";
+//
+//	if ( $form_videoapi == 'vimeo' ) {
+//	// if vimeo video
+//	$video_info = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$form_video.php"));
+//	$video_thumb = $video_info[0]['thumbnail_medium'];
+//
+//	$video_w = $video_info[0]['width'];
+//	$video_h = $video_info[0]['height'];
+//	if ( $video_w > 500 ) {
+//		$video_w = 500;
+//		$video_h = 300;
+//	}
+//	$video_code = "Video: <iframe src='http://player.vimeo.com/video/$form_video?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff' width='$video_w' height='$video_h' frameborder='0' webkitAllowFullScreen allowFullScreen></iframe>";
+//	echo $video_code;
+//	} // end if Vimeo video
+//
+//	if ( $form_videoapi == 'youtube' ) {
+//	// if youtube video
+//	$video_id = $form_video;
+//			// thumb de alta calidad
+//			$video_thumb_hq = "http://img.youtube.com/vi/" .$video_id. "/hqdefault.jpg";
+//			// thumb de calidad baja
+//			$video_thumb = "http://img.youtube.com/vi/" .$video_id. "/default.jpg";
+//	$video_w = "500"; // definimos la que nos interese
+//	$video_h = $video_w * 0.8235;
+//	$video_code = "<iframe src='http://www.youtube.com/embed/$video_id' frameborder='0' width='$video_w' height='$video_h' allowfullscreen></iframe>";
+//	echo $video_code;
+//	}
 
 	} else {
 		// form vars
-		$action_slug = $wp_query->query_vars['name'];
+		//$action_slug = $wp_query->query_vars['name'];
+		$action_slug = get_permalink();
 
 		include "content-add.form.php";
 
@@ -221,23 +230,38 @@ if ( is_user_logged_in() ) {
 
 	} // end if the content has been inserted
 
+
+
+
 } else {
 	// if user is not logged in
 
 	// form vars
-	$action_slug = $wp_query->query_vars['name'];
+//	$action_slug = $wp_query->query_vars['name'];
+		$action_slug = get_permalink();
 	$ref = $post_perma;
 
 	include "user-login.form.php";
 	include "user-signup.form.php";
 
 	// HTML output
-	echo "<strong>Login</strong>";
+	// page header
+	$post_tit = "Log in";
+	$subtitle = "You must log in before submit any content. If you don't have still an account, you can fill in the form underneath.";
+	echo "
+	<article>
+		<header class='art-pre'><h1 class='art-tit'>" .$post_tit. "</h1>
+			<span class='sub-tit-1'>" .$subtitle. "</span>
+		</header>
+	";
+
+//	echo "<h2>Login</h2>";
 	echo $login_form;
-	echo "<strong>Sign up</strong>";
+	echo "<h2>Sign up</h2>";
 	echo $signup_form;
 
 } // end if user is logged in
 ?>
-
+	</article>
+</div><!-- end .part-mid1 -->
 <?php get_footer(); ?>

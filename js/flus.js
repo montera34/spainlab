@@ -15,12 +15,13 @@ $j(document).ready(function(){
 	);
 	// zoom items classes and click effect
 	var $maxHeight = 0;
+	var $counter = 0;
 	$j('div.zoom-item').each(function( i ) {
 		var $currentHeight = $j(this).height();
 		if ( $currentHeight > $maxHeight ) {
 			$maxHeight = $currentHeight;
 		}
-			var $counter = (i+1);
+			$counter = (i+1);
 			var $access = 'access-' + $counter;
 			$j(this).addClass($access);
 			$j('img.'+ $access ).click(function() {
@@ -33,11 +34,12 @@ $j(document).ready(function(){
 				}
 			});
 	});
-	$maxHeight = $maxHeight+20;
-	$j('#visor').css({height: $maxHeight + 'px', position: 'absolute', top: '0px'});
-	$maxHeight = $maxHeight+80;
-	$j('#single-gallery').css({height: $maxHeight + 'px'});
+	$maxHeight = $maxHeight+10;
+	$galleryHeight = 0; //hacer esta altura variable en función del número de thumbnails [if $counter >  y que solo afecte a los que tengan  $counter>1
+	$j('#visor').css({height: $maxHeight + 'px', position: 'absolute', top: $galleryHeight + 'px'});
+	$j('#single-gallery').css({height: $maxHeight + 'px',position: 'relative',}); //puse la position en relative y todo funcionó. el #selector lo necesitaba
 	$j('.zoom-item').css({position: 'absolute', top: '0px'});
 	$j('.part-single-gal').css({'min-height': $maxHeight + 'px'});
-	$j('#selector').css({position: 'absolute', bottom: '0px'});
+	if ( $counter==1 ) { $j('#selector').hide(); }
+	else { $j('#selector').css({position: 'absolute', top: '5px', left: '5px', opacity: '0.9'}); }
 });

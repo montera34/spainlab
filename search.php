@@ -25,10 +25,7 @@
 
 	<?php endwhile; ?>
 
-		<div class="navigation">
-			<div class="alignleft"><?php next_posts_link('&laquo; Contenido m&aacute;s antiguo') ?></div>
-			<div class="alignright"><?php previous_posts_link('Contenido m&aacute;s reciente &raquo;') ?></div>
-		</div>
+	<?php include "navigation.php"; ?>
 
 	<?php else : ?>
 	
@@ -36,9 +33,7 @@
 
 	<?php endif; ?>
 	<ul>
-		<li>Vaya... No hemos encontrado nada.</li>
-		<li><b>TRY</b> / AGAIN?</li>
-		<li><?php include (TEMPLATEPATH . '/searchform.php'); ?></li>
+		<li>Nothing was found.</li>
 	</ul>
 </div>
 

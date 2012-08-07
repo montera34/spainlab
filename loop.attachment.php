@@ -28,7 +28,9 @@
 			'post_type' => 'attachment',
 			'numberposts' => $img_amount,
 			'post_status' => null,
-			'post_parent' => $img_post_parent
+			'post_parent' => $img_post_parent,
+			'orderby' => 'menu_order',
+			'order' => 'ASC'
 		);
 		$attachments = get_posts($args);
 		if ( $attachments ) {
@@ -85,7 +87,7 @@ if ( isset($video_code) ) {
 		$video_out .= "<div class='zoom-item'>" .$video. "</div>";
 	}
 	foreach ( $video_thumbs as $vthumb ) {
-		$video_thumbs_out .= "<div class='single-thumb'>" .$vthumb. "</div>";
+		$video_thumbs_out .= "<div class='single-thumb single-thumb-video'>" .$vthumb. "</div>";
 	}
 } // end if video attached
 
@@ -136,6 +138,9 @@ if ( isset($img_medium) && isset($img_mini) ) {
 	";
 	$attach_out .= $video_out. "
 			</div><!-- end #visor -->
+			<div id='selector'>"
+				.$video_thumbs_out.
+			"</div><!-- end #selector -->
 		</section>
 	";
 
@@ -144,4 +149,5 @@ if ( isset($img_medium) && isset($img_mini) ) {
 	// here is the place if you want to define any var or any alternative text:
 	// $attach_out = "This content doesn't have any image yet, but you can upload some.";
 }
+
 ?>

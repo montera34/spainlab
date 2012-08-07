@@ -1,7 +1,8 @@
 <?php
 $signup_form = "
-<form id='signup' name='signup' method='post' action='" .$general_options['blogurl']. "/" .$action_slug. "'>
+<form id='signup' name='signup' method='post' action='" .$action_slug. "'>
 	<fieldset>
+		<span class='req'>*</span>
 		<input id='signup-username' name='signup-username' type='text' value='' />
 		<label>Username</label>
 	</fieldset>
@@ -14,6 +15,7 @@ $signup_form = "
 		<label>Password confirmation</label>
 	</fieldset>
 	<fieldset>
+		<span class='req'>*</span>
 		<input id='signup-mail' name='signup-mail' type='text' value='' />
 		<label>E-mail</label>
 	</fieldset>

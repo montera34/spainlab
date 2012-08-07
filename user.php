@@ -92,31 +92,14 @@ if ( isset($_POST['signup-submit']) ) {
 // see header.php
 
 // vars for forms
-$action_slug = $wp_query->query_vars['name'];
-$ref = $general_options['blogurl']. "/" .$action_slug;
+//$action_slug = $wp_query->query_vars['name'];
+//$ref = $general_options['blogurl']. "/" .$action_slug;
 
 
+//if ( is_user_logged_in() ) {
+//	// if login successfully
+//
+//}
 
-if ( is_user_logged_in() ) {
-	// if login successfully
-	// user data
-	global $current_user;
-	get_currentuserinfo();
-	$username = $current_user->user_login;
 
-	// logout form
-	include "user-logout.form.php";
-
-	$success_msg = "You have logged in as " .$username. " Welcome! You can <a href='" .$general_options['blogurl']. "/wp-admin/profile.php'>complete your profile</a> to give other users more information about you.";
-	// HTML output
-	echo $success_msg;
-	echo $logout_form;
-
-}
-
-if ( isset($_GET['user']) ) {
-	// if user has just signed up
-	$success_msg = "You have sign up successfully. First of all, you must log in using the form underneath.";
-	echo $success_msg;
-}
 ?>

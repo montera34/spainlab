@@ -21,13 +21,34 @@
 <?php
 // to log out a logged in user
 if ( is_user_logged_in() && isset($_POST['logout-submit']) ) {
-	// if user is logged in and a logout link has been clicked
 	$redirect = $_POST['logout-ref'];
-	
 	wp_logout();
 	header("location: " .$redirect);
 }
 
+if ( is_user_logged_in() ) {
+	// if user is logged in and a logout link has been clicked
+
+	// user data
+	global $current_user;
+	get_currentuserinfo();
+	$username = $current_user->user_login;
+
+	// logout form
+		$action_slug = get_permalink();
+$ref = $action_slug;
+	include "user-logout.form.php";
+
+	$success_msg = "You have logged in as <strong>" .$username. "</strong> Welcome!";
+}
+
+if ( !is_user_logged_in() ) {
+	$success_msg = "To submit any content you have to log in first. You can <a href='" .$general_options['blogurl']. "/open-lab/submit-your-project'>log in here</a>.";
+}
+if ( isset($_GET['user']) ) {
+	// if user has just signed up
+	$success_msg = "You have sign up successfully. First of all, <strong>you must log in using the form underneath.</strong>";
+}
 // to log in a signed up user
 if ( isset($_POST['login-submit']) ) {
 	$redirect = $_POST['login-ref'];
@@ -104,6 +125,25 @@ wp_head();
 <?php // better to use body tag as the main container ?>
 <body <?php body_class(); ?>>
 
+	<?php if ( !is_user_logged_in() ) { ?>
+		<div id="userbar">
+			<ul class="centrator">
+				<li class="user-opt"><?php echo $success_msg; ?></li>
+			</ul>
+		</div>
+
+	<?php } ?>
+	<?php if ( is_user_logged_in() ) { ?>
+		<div id="userbar">
+			<ul class="centrator userbarbg">
+				<li class="user-msg"><?php echo $success_msg; ?></li>
+				<li class="user-opt"><?php echo "<a href='" .$general_options['blogurl']. "/wp-admin/profile.php'>Edit your profile</a>"; ?></li>
+				<li class="user-opt"><?php echo "<a href='" .$general_options['blogurl']. "/author/" .$username. "'>Visit your content</a>"; ?></li>
+				<li class="user-opt"><?php echo $logout_form; ?></li>
+			</ul>
+		</div>
+	<?php } ?>
+
 	<header id="pre" role="banner">
 		<a href='/' class='' title='home'>
 			<img src="<?php bloginfo('template_directory'); ?>/images/header-spainlab.png" id="image-header">
@@ -112,25 +152,37 @@ wp_head();
 			<h1 id="blogname"><?php echo "<a href='" .$general_options['blogurl']. "' title='Ir al inicio'>" .$general_options['blogname']. "</a>"; ?></h1>
 			<h2 id="blogdesc"><?php echo $general_options['blogdesc']; ?></h2>
 		</hgroup>
+
 		<div id="navigation">
 			<?php // main navigation menu 1
 			$menu_slug = "header-left-menu";
-			if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_slug ] ) ) {
-				$menu_vars = wp_get_nav_menu_object( $locations[$menu_slug] );
-				//$args = array();
-				$menu_items = wp_get_nav_menu_items($menu_vars->term_id);
-				$menu_out = "<nav id='mainmenu1' role='navigation'>";
-				//foreach ( (array) $menu_items as $key->$item ) {
-				foreach ( $menu_items as $item ) {
-					$item_tit = $item->title;
-					$item_url = $item->url;
-					$item_class1 = $item->classes[0];
-					$item_class2 = $item->classes[1];
-					$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2' title='$item_tit'>$item_tit</a></div>";
-				}
-				$menu_out .= "</nav><!-- #mainmenu1 -->";
-				echo $menu_out;
-			} // end if there is items in this menu
+			$args = array(
+				'theme_location' => $menu_slug,
+				'container' => 'false',
+				'menu_id' => 'mainmenu1',
+				'menu_class' => 'menu',
+			);
+				wp_nav_menu( $args );
+//			if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_slug ] ) ) {
+//				$menu_vars = wp_get_nav_menu_object( $locations[$menu_slug] );
+//				//$args = array();
+//				$menu_items = wp_get_nav_menu_items($menu_vars->term_id);
+//				$menu_out = "<nav id='mainmenu1' role='navigation'>";
+//				//foreach ( (array) $menu_items as $key->$item ) {
+//				foreach ( $menu_items as $item ) {
+//					$item_tit = $item->title;
+//					$item_url = $item->url;
+//					$item_class1 = $item->classes[0];
+//					$item_class2 = $item->classes[1];
+//					$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2' title='$item_tit'>$item_tit</a></div>";
+//				}
+//				$menu_out .= "</nav><!-- #mainmenu1 -->";
+//				echo $menu_out;
+//
+//		echo "<pre>";
+//		print_r($item);
+//		echo "</pre>";
+//			} // end if there is items in this menu
 			?>
 
 			<?php 
@@ -138,22 +190,29 @@ wp_head();
 
 			// main navigation menu 2
 			$menu_slug = "header-right-menu";
-			if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_slug ] ) ) {
-				$menu_vars = wp_get_nav_menu_object( $locations[$menu_slug] );
-				//$args = array();
-				$menu_items = wp_get_nav_menu_items($menu_vars->term_id);
-				$menu_out = "<nav id='mainmenu2' role='navigation'>";
-				//foreach ( (array) $menu_items as $key->$item ) {
-				foreach ( $menu_items as $item ) {
-					$item_tit = $item->title;
-					$item_url = $item->url;
-					$item_class1 = $item->classes[0];
-					$item_class2 = $item->classes[1];
-					$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2' title='$item_tit'>$item_tit</a></div>";
-				}
-				$menu_out .= "</nav><!-- #mainmenu2 -->";
-				echo $menu_out;
-			} // end if there is items in this menu
+			$args = array(
+				'theme_location' => $menu_slug,
+				'container' => 'false',
+				'menu_id' => 'mainmenu2',
+				'menu_class' => 'menu',
+			);
+				wp_nav_menu( $args );
+//			if ( ( $locations = get_nav_menu_locations() ) && isset( $locations[ $menu_slug ] ) ) {
+//				$menu_vars = wp_get_nav_menu_object( $locations[$menu_slug] );
+//				//$args = array();
+//				$menu_items = wp_get_nav_menu_items($menu_vars->term_id);
+//				$menu_out = "<nav id='mainmenu2' role='navigation'>";
+//				//foreach ( (array) $menu_items as $key->$item ) {
+//				foreach ( $menu_items as $item ) {
+//					$item_tit = $item->title;
+//					$item_url = $item->url;
+//					$item_class1 = $item->classes[0];
+//					$item_class2 = $item->classes[1];
+//					$menu_out .= "<div><a href='$item_url' class='$item_class1 $item_class2' title='$item_tit'>$item_tit</a></div>";
+//				}
+//				$menu_out .= "</nav><!-- #mainmenu2 -->";
+//				echo $menu_out;
+//			} // end if there is items in this menu
 
 			
 			?>
