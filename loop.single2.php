@@ -28,6 +28,8 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 	// if scientifics post type
 	// author bio
 	$bio = get_the_excerpt();
+	$post_subtit = get_post_meta($post->ID, 'institution', true) ;
+	
 	// author thumb
 	if ( post_custom('thumbimg') ) {
 		// get thumbnail image custom field value
@@ -39,7 +41,7 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 
 } elseif ( get_post_type() == $general_options['pt_r']  ) {
 //} elseif ( get_post_type() == $general_options['pt_r'] || get_post_type() == 'post' ) {
-	// if remotes post type 
+	// if remotes/project from open lab post type 
 	// author bio
 	$bio = get_the_author_meta('description');
 	// author name
@@ -71,40 +73,39 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 	$attachment_tit = get_the_title();
 	$prev_img = get_previous_image_link();
 	$next_img = get_next_image_link();
-	$navigation_attachment = "<div id=\"navegation\" class=\"navigation\"> <div class=\"nav-image-left\">" .$prev_img. "</div>" .$attachment_tit. "<div class=\"nav-image-right\">" .$next_img. "</div></div>";
+	$navigation_attachment = "<div id=\"navegation-attachment\" class=\"navigation\"> <div class=\"nav-image-left\">" .$prev_img. "</div><div class=\"nav-image-middle\">" .$attachment_tit. "</div><div class=\"nav-image-right\">" .$next_img. "</div></div>";
 	
 }
 
 else {
 	//if post type: get_post_type() == 'post'
 	// author bio
-	$bio = get_the_author_meta('description');
+	$blogger_bio = get_the_author_meta('description');
 	// author name
 	if ( get_the_author_meta('first_name') != '' || get_the_author_meta('last_name') != '' ) {
 		$author = get_the_author_meta('first_name'). " " .get_the_author_meta('last_name');
 	} else { $author = get_the_author_meta('display_name'); }
+	$post_author = "<a href='" .get_author_posts_url(get_the_author_meta( 'ID' )). "'>" .get_the_author_meta('display_name'). "</a>";
 	// author thumb
-	$post_thumbimg = get_avatar( get_the_author_meta('ID'), 128 );
+	$post_thumbimg = get_avatar( get_the_author_meta('ID'), 64 );
 	// post subtitle
-	$post_author = get_the_author(); 
 	$post_time = get_the_time('F d, Y');
-	//$post_category = get_categories();
-	//$post_category = the_category(', ');
-	
-	// test... fix this. just trying to output the post categories
-	//$categories=  get_categories();
-	//foreach ($categories as $category) {
-	//	$post_category_1 = $category->name;
-	//	echo $option;
-	//  }
-	
-	//$post_category_1= $post_category[0];
-	//	if($category[0]){
-	//	$post_category_first = '<a href="'.get_category_link($category[0]->term_id ).'">'.$category[0]->cat_name.'</a>';
-	//	}
-	$post_tags = get_the_tags('<span class="tags">tags:&nbsp;','  ','</span>' );
-	$post_metadata = "".$post_time. " ".$post_category. "".$post_tags. "";
-	$post_subtit = "Posted by <em>" .$post_author. "</em> " .$post_metadata. " " ;
+	$post_categories = get_the_category();
+	$cats_out = "";
+	$tags_out = "";
+	$separator = "  ";
+	foreach ( $post_categories as $category ) {
+		$cats_out .= '<strong><a href="'.get_category_link($category->term_id ).'" title="' . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) . '">'.$category->cat_name.'</a></strong>' .$separator;
+	}
+	$post_tags = get_the_tags();
+	if ($post_tags) {
+		$sepcatstags = ", ";
+		foreach( $post_tags as $tag ) {
+			$tags_out .= '<a href="' .get_tag_link($tag->term_id). '">' .$tag->name. '</a>' .$separator;
+		}
+	} else { $sepcatstags = ""; }
+
+	$post_subtit = "Date: " .$post_time. " | Context: " .$cats_out . $sepcatstags . $tags_out;
 }
 
 ?>
@@ -122,20 +123,64 @@ else {
 		<header class="art-pre">
 			<?php
 			echo "<h1 class='art-tit'>" .$post_tit. "</h1>";
-			echo "<span class='sub-tit-1'>" .$post_subtit. "</span>";
+			echo "<div class='postmetadata'>" .$post_subtit ;
+			edit_post_link('Editar', ' | ', '');
+			echo "</div>";
 			?>
 		</header><!-- end .art-pre -->
 		<section class="page-text" id="content-txt">
 			<?php
 			echo $navigation_attachment;
-			the_content();
-			edit_post_link('Editar', '', '');
 			wp_link_pages( array( 'before' => '<section><div class="art-nav">P&aacute;ginas: ', 'after' => '</div></section>' ) );
+			the_content();
 			?>
 		</section>
 
+<?php if ( get_post_type() == 'post' ) {
+// if blog ?>
+		<section class="blogger postmetadata">
+			<?php if ( isset($post_thumbimg) ) {
+				//echo "<span class='img-background' style='background: url(" .$post_thumbimg. ") center center no-repeat #eee;' ></span>";
+				echo "<div class='blogger-avatar'>" .$post_thumbimg. "</div>";
+				$style_img = "style='margin-left: 73px;'";
+			} ?>
+			<div class="blogger-tit"<?php if ( isset($style_img) ) { echo " " .$style_img; } ?>>Content posted by <em><?php echo $author ?></em>.</div>
+			<div class="blogger-bio"<?php if ( isset($style_img) ) { echo " " .$style_img; } ?>><?php echo $blogger_bio ?></div>
+		</section><!-- end .blogger -->
+			<?php // last posts by this author
+			$args = array(
+				'author' => get_the_author_meta('ID'),
+				'posts_per_page' => '6',
+				'post__not_in' => array( get_the_ID() )
+			);
+			$blogger_query = new WP_Query( $args );
+			if ( $blogger_query->have_posts() ) : ?>
+		<section class="blogger postmetadata">
+				<div class="blogger-tit ">Other posts by this author:</div>
+				<ul class="blogger-rel">
+				<?php while ( $blogger_query->have_posts() ) : $blogger_query->the_post();
+				//defining size of thumbnails in gallery
+				$img_post_parent = get_the_ID();
+				$img_amount = 1;
+				$mini_size = array(48,48);
+				include "loop.attachment.php";
+?>
+					<li><a href="<?php the_permalink() ?>" rel="bookmark" title="Permalink to <?php the_title(); ?>"><?php echo $attach_out; ?><div class="blogger-rel-tit"><?php the_title(); ?></div></a></li>
+				<?php unset($attach_out); endwhile; ?>
+				</ul>
+		</section><!-- end .blogger -->
+			<?php else :
+			endif;
+			?>
+<?php } ?>
 	</article>
 
+<?php if ( get_post_type() == 'post' ) {
+	// if blog ?>
+	<section id='related'>
+		<?php if ( ! dynamic_sidebar( 'bar-3' ) ) : ?><?php endif; // end blog widget area ?>
+	</section><!-- end #related -->
+<?php } else { ?>
 	<aside id="bio">
 		<div class="architects">
 			<?php if ( isset($post_thumbimg) ) {
@@ -143,9 +188,12 @@ else {
 				echo "<div class='img-background'>" .$post_thumbimg. "</div>";
 			} ?>
 			<header><h2><?php echo $author; ?></h2></header>
-			<?php if ( $bio != '' ) { ?><span class='sub-tit-1'>bio</span><?php } ?>
+			<?php if ( $bio != '' ) { ?><span class='sub-tit-1'>bio</span><?php }
+			elseif ( 1 == 2 ) {} ?>
 		</div><!-- end .architects -->
 		<div class='page-text'>
 			<?php if ( $bio != '' ) { echo $bio; } ?>
 		</div><!-- end .page-text -->
 	</aside><!-- end #bio -->
+
+<?php } ?>

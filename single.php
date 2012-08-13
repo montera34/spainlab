@@ -19,7 +19,7 @@ if ( have_posts() ) :
 			include "loop.attachment.php";
 		}
 
-		include "loop.single.php";
+		include "loop.single2.php";
 
 		if ( get_post_type() == $general_options['pt_r'] || get_post_type() == 'post' ) {
 			echo "<div class='part-mid1'>";
@@ -51,7 +51,6 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 		echo "
 		<section id='related'>
 			<header class='section-tit'><h2>" .$rl_tit. "</h2></header>";
-
 		while ( $related_query->have_posts() ) : $related_query->the_post();
 			include "loop.related.php";
 		endwhile;

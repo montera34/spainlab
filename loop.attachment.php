@@ -3,7 +3,7 @@
 // the <img /> code for each image attached to a given post
 //	$img_mini with the <img /> codes for thumb version of images
 //	$img_medium with the <img /> codes for medium size version of images
-//	$img_mini with the <img /> code for large size version of images
+//	$img_large with the <img /> code for large size version of images
 // loop.attachment.php needs some vars to work:
 //	parent post ID which the images are attached
 //	$img_post_parent = get_the_ID();
@@ -49,6 +49,8 @@
 					if ( $medium_size != '' ) {
 						// code to retrieve medium version
 						$img_medium_vars = wp_get_attachment_image_src($attachment->ID, $medium_size );
+						$img_attachment_link = get_attachment_link($attachment->ID);
+						//error, saca el excerpt del post: $imageCaption = get_the_excerpt($attachment->ID);
 						if ( isset($custom_width) ) {
 							$img_width = $custom_width;
 							$img_height = $img_medium_vars[2] * ($custom_width/$img_medium_vars[1]);
@@ -58,7 +60,7 @@
 							$img_width = $img_medium_vars[1];
 							$img_height = $img_medium_vars[2];
 						}
-						array_push($img_medium, "<img src='{$img_medium_vars[0]}' width='{$img_width}' height='{$img_height}' />");
+						array_push($img_medium, "<a href='{$img_attachment_link}'><img src='{$img_medium_vars[0]}' width='{$img_width}' height='{$img_height}'/></a>");
 					} else { unset($img_medium); }
 
 					if ( $large_size != '' ) {
@@ -80,16 +82,10 @@
 
 // this code is for attachment output
 // you can include here, or anywhere inside the loop
-if ( isset($video_code) ) {
-	// if any video attached to the post
-	$video_out = "";
-	foreach ( $video_code as $video ) {
-		$video_out .= "<div class='zoom-item'>" .$video. "</div>";
-	}
-	foreach ( $video_thumbs as $vthumb ) {
-		$video_thumbs_out .= "<div class='single-thumb single-thumb-video'>" .$vthumb. "</div>";
-	}
-} // end if video attached
+$jcount = 0; // counter of thumbs
+$gcount = 0; // counter of group of 8 thumbs
+//$vcount = 0; // counter of thumbs of video
+
 
 if ( isset($img_medium) && isset($img_mini) ) {
 	$attach_out = "
@@ -103,18 +99,38 @@ if ( isset($img_medium) && isset($img_mini) ) {
 			</div>
 		";
 	}
-	$attach_out .= $video_out. "
+	if ( isset($video_code) ) {
+	// if any video attached to the post
+		foreach ( $video_code as $video ) {
+			$attach_out .= "<div class='zoom-item'>" .$video. "</div>";
+		}
+	} // end if video attached
+	$attach_out .= "
 			</div><!-- end #visor -->
-			<div id='selector'>
+			<div id='selector'><div id='deslizante'>
 	";
 	foreach ( $img_mini as $img ) {
+		$jcount++;
+		if ( $jcount == 1 || $jcount == (8 * $gcount + 1) ) { $attach_out .= "<div class='desliza'>"; }
 		$attach_out .= "
 			<div class='single-thumb'>
 				" .$img. "
 			</div>
 		";
+		if ( $jcount % 8 == 0 ) { $attach_out .= "</div><!-- end .desliza -->"; $gcount++; }
 	}
-	$attach_out .= $video_thumbs_out. "
+	if ( isset($video_code) ) {
+	// if any video attached to the post
+		foreach ( $video_thumbs as $vthumb ) {
+			$jcount++;
+			if ( $jcount == 1 || $jcount == (8 * $gcount + 1) ) { $attach_out .= "<div class='desliza'>"; }
+			$attach_out .= "<div class='single-thumb single-thumb-video'>" .$vthumb. "</div>";
+			if ( $jcount % 8 == 0 ) { $attach_out .= "</div><!-- end .desliza -->"; $gcount++; }
+		}
+	} // end if video attached
+	if ( $jcount % 8 != 0 ) { $attach_out .= "</div><!-- end .desliza -->"; }
+	$attach_out .= "
+			</div><!-- end #deslizante -->
 			</div><!-- end #selector -->
 		</section><!-- end #single-gallery -->
 	";
@@ -130,17 +146,38 @@ if ( isset($img_medium) && isset($img_mini) ) {
 	}
 	$attach_out .= $video_out. "</section>";
 
+} elseif ( !isset($img_medium) && isset($img_mini) ) {
+	foreach ( $img_mini as $img ) {
+		$attach_out .= "
+			<div class='single-thumb'>
+				" .$img. "
+			</div>
+		";
+
+	}
+
 } elseif ( !isset($img_medium) && !isset($img_mini) && isset($video_code) ) {
 	// if no images, but videos
+
 	$attach_out = "
 		<section id='single-gallery'>
 			<div id='visor'>
 	";
-	$attach_out .= $video_out. "
+	foreach ( $video_code as $video ) {
+		$attach_out .= "<div class='zoom-item'>" .$video. "</div>";
+	}
+
+	$attach_out .= "
 			</div><!-- end #visor -->
-			<div id='selector'>"
-				.$video_thumbs_out.
-			"</div><!-- end #selector -->
+			<div id='selector'><div id='deslizante'>";
+	foreach ( $video_thumbs as $vthumb ) {
+		$jcount++;
+		if ( $jcount == 1 || $jcount == (8 * $gcount + 1) ) { $attach_out .= "<div class='desliza'>"; }
+		$attach_out .= "<div class='single-thumb single-thumb-video'>" .$vthumb. "</div>";
+		if ( $jcount % 8 == 0 ) { $attach_out .= "</div><!-- end .desliza -->"; $gcount++; }
+	}
+	if ( $jcount % 8 != 0 ) { $attach_out .= "</div><!-- end .desliza -->"; }
+	$attach_out .= "</div><!-- end #deslizante --></div><!-- end #selector -->
 		</section>
 	";
 

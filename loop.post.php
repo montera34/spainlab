@@ -12,7 +12,7 @@
 				<?php the_content('Continue reading &raquo;'); ?>
 			</div>	
 			<div class="postmetadata">
-				Context: <strong><?php the_category(', ') ?></strong> | <?php the_tags('<span class="tags">','  ','</span> | ' ); ?>Conversation: <?php comments_popup_link('0&nbsp;comments', '1&nbsp;comment', '%&nbsp;comments'); ?> 
+				Context: <?php the_category(', ') ?> | <?php the_tags('<span class="tags">','  ','</span> | ' ); ?>Conversation: <?php comments_popup_link('0&nbsp;comments', '1&nbsp;comment', '%&nbsp;comments'); ?> 
 			</div>
 
 		</article><!-- end article post -->

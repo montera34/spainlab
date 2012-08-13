@@ -33,7 +33,7 @@ rewind_posts(); ?>
 
 <?php // related content loop
 $pt = $general_options['pt_r'];
-$rl_tit = "Remotes";
+$rl_tit = "Projects";
 $args = array(
     'posts_per_page' => 12,
 	'post_type' => $pt,

@@ -5,21 +5,15 @@ Template Name: Academic Lab
 get_header();
 ?>
 
-<div id="academic" class="part-mid1">
-<?php // this page loop
-if ( have_posts() ) : 
-	while ( have_posts() ) : the_post();
-		include("loop.page.php");
-	endwhile;
-else :
-endif; ?>
-<?php rewind_posts(); ?>
+<div id="blog" class="part-mid1">
+
 
 <?php
 $author_array_list = get_users(array(
 	'role' => 'author',
 	'fields' => 'ID'
 ));
+
 $author_comma_list = implode(",", $author_array_list);
 $args = array(
 	'author' => $author_comma_list,
@@ -48,12 +42,33 @@ if ( $related_query->have_posts() ) : ?>
 
 </div><!-- end #academic -->
 
+
+
 <?php // related content loop
+
+echo "<section id='academic'>";
+// this page loop
+if ( have_posts() ) : 
+	while ( have_posts() ) : the_post();
+		$col400 = " style='width: 400px;padding-bottom:0px;'";
+		include("loop.page.php");
+	endwhile;
+else :
+endif; 
+echo "</section>";
+
+if ( $related_query->have_posts() ) : ?>
+	<?php while ( $related_query->have_posts() ) : $related_query->the_post();?>
+		<?php endwhile; else: ?>		
+<?php endif; ?>
+
+<?php
+echo "<section id='related' class='academic'>";
+
 $authors = get_users(array(
 	'role' => 'author',
 ));
-//echo "<pre>";print_r($authors);echo "</pre>";
-echo "<section id='related'>";
+echo '<h3 class="widgettitle">List of Authors in the Academic Lab</h3>';
 	foreach ( $authors as $authorr ) {
 		include("loop.related.php");
 	} // end loop authors

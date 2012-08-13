@@ -18,59 +18,8 @@
 
 <?php global $general_options; require_once( get_stylesheet_directory(). '/general-vars.php' ); ?>
 
-<?php
-// to log out a logged in user
-if ( is_user_logged_in() && isset($_POST['logout-submit']) ) {
-	$redirect = $_POST['logout-ref'];
-	wp_logout();
-	header("location: " .$redirect);
-}
-
-if ( is_user_logged_in() ) {
-	// if user is logged in and a logout link has been clicked
-
-	// user data
-	global $current_user;
-	get_currentuserinfo();
-	$username = $current_user->user_login;
-
-	// logout form
-		$action_slug = get_permalink();
-$ref = $action_slug;
-	include "user-logout.form.php";
-
-	$success_msg = "You have logged in as <strong>" .$username. "</strong> Welcome!";
-}
-
-if ( !is_user_logged_in() ) {
-	$success_msg = "To submit any content you have to log in first. You can <a href='" .$general_options['blogurl']. "/open-lab/submit-your-project'>log in here</a>.";
-}
-if ( isset($_GET['user']) ) {
-	// if user has just signed up
-	$success_msg = "You have sign up successfully. First of all, <strong>you must log in using the form underneath.</strong>";
-}
-// to log in a signed up user
-if ( isset($_POST['login-submit']) ) {
-	$redirect = $_POST['login-ref'];
-	$creds = array();
-	$creds['user_login'] = $_POST['login-username'];
-	$creds['user_password'] = $_POST['login-pass'];
-	$creds['remember'] = $_POST['login-remember'];
-	$user = wp_signon( $creds, false );
-
-	if ( is_wp_error($user) ) {
-		// if error
-		// echo error message
-		echo $user->get_error_message();
-	} else {
-		// if everything correct
-		// redirect to content
-	//	$redirect .= "?login=true"
-		header("location: " .$redirect);
-	}
-}
-// end log in proccess
-
+<?php // dealing with user log in or sign up
+include "user.php";
 ?>
 
 <title>
@@ -119,7 +68,7 @@ wp_enqueue_script("jquery");
 if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
 wp_head();
 ?>
-
+<script type="text/javascript" src="<?php echo $general_options['blogtheme']. "/js/menu.js"; ?>"></script>
 </head>
 
 <?php // better to use body tag as the main container ?>
@@ -144,15 +93,43 @@ wp_head();
 		</div>
 	<?php } ?>
 
-	<header id="pre" role="banner">
-		<a href='/' class='' title='home'>
-			<img src="<?php bloginfo('template_directory'); ?>/images/header-spainlab.png" id="image-header">
+	<?php // if ( is_home() ) { ?>
+	<?php if ( is_page("home-temp") ) {
+		$banner = "logo-spainlab-2.png";
+		$banner_class = "image-home";
+		// don't show menu bar
+	} else {
+		$banner = "header-spainlab.png";
+		$banner_class = "image-header";
+	}
+	?>
+
+	<header id="pre" role="banner" class="<?php echo $banner_class; ?>">
+		<a href='/' title='home'>
+			<img src="<?php echo $general_options['blogtheme'] . "/images/" . $banner; ?>" id="<?php echo $banner_class; ?>">
 		</a>
-		<hgroup id="pre-tit">
+		<hgroup id="pretit">
 			<h1 id="blogname"><?php echo "<a href='" .$general_options['blogurl']. "' title='Ir al inicio'>" .$general_options['blogname']. "</a>"; ?></h1>
 			<h2 id="blogdesc"><?php echo $general_options['blogdesc']; ?></h2>
 		</hgroup>
 
+
+<?php // if ( is_home() ) { ?>
+<?php if ( is_page("home-temp") ) {?>
+
+		<div id="slideshow">
+			<?php $gallery_images = get_posts('post_type=gallery&orderby=rand&numberposts=-1');
+			foreach( $gallery_images as $idx => $post ) {
+				echo "<div>";
+				setup_postdata($post);
+				the_post_thumbnail('full', array('class' => 'snapshot snapshot' . ($idx+1) ) );
+				echo "</div>";
+			} ?>
+		</div><!-- end #slideshow -->
+<?php 
+
+} else {
+?>
 		<div id="navigation">
 			<?php // main navigation menu 1
 			$menu_slug = "header-left-menu";
@@ -216,7 +193,10 @@ wp_head();
 
 			
 			?>
-		</div>
+		</div><!-- end #navigation -->
+
+<?php } // end if is home page ?>
+
 	</header><!-- end #pre -->
 
 	<hr />

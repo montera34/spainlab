@@ -16,8 +16,6 @@ endif; ?>
  <?php rewind_posts(); ?>
 
 <?php
-
-
 //mirar codigo madre en http://www.hashbangcode.com/blog/create-page-posts-wordpress-417.html
 // also found help in http://wordpress.org/support/topic/more-tag-ignored-on-home-page
 $args = array(
@@ -44,6 +42,7 @@ global $more;    // Declare global $more (before the loop). "para que seguir ley
 $more = 0; 
 		include "loop.post.php";
 ?>
+	
 		<?php endwhile; else: ?>		
 
 <?php endif; ?>

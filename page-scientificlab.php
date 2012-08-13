@@ -35,8 +35,9 @@ if ( $random_query->have_posts() ) :
 	while ( $random_query->have_posts() ) : $random_query->the_post();
 		$max_w = "500";
 		include "loop.video.php";
-
+/*------------------ I deactivate all this part
 		echo "<div class='zoom-item'>" .$video_code[0]. "</div>";
+----------------------*/
 	endwhile;
 	echo "</section><!-- end #single-gallery -->";
 else :

@@ -57,7 +57,7 @@ echo $general_options['stats_code']; ?>
 
 <script type="text/javascript" src="<?php echo $general_options['blogtheme']. "/js/add.field.js"; ?>"></script>
 <script type="text/javascript" src="<?php echo $general_options['blogtheme']. "/js/flus.js"; ?>"></script>
-<script type="text/javascript" src="<?php echo $general_options['blogtheme']. "/js/menu.js"; ?>"></script>
+<script type="text/javascript" src="<?php echo $general_options['blogtheme']. "/js/autoplay.js"; ?>"></script>
 
 <?php wp_footer(); ?>
 

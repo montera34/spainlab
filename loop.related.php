@@ -30,6 +30,11 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 	} else { $post_subtit = get_the_author_meta('display_name'); }
 	//related excerpt
 	$post_excerpt = get_the_excerpt();
+	$pattern = '/.{120}/i';
+	preg_match($pattern, $post_excerpt, $matches);
+	if ( $matches[0] != '' ) {
+		$post_excerpt = $matches[0] . "...";
+	}
 	// related thumb
 //	$max_w = "500";
 //	include "loop.video.php";
@@ -41,7 +46,6 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 		$post_thumbimg = $img_mini_vars[0];
 		$post_thumbimg = "<img src='" .$post_thumbimg. "' alt='Author image' />";
 	} else { unset($post_thumbimg); }
-
 
 
 } elseif ( get_post_type() == $general_options['pt_s'] ) {
@@ -76,12 +80,14 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 //		if ( get_the_author_meta('first_name') != '' || get_the_author_meta('last_name') != '' ) {
 //			$post_tit = get_the_author_meta('first_name'). " " .get_the_author_meta('last_name');
 //		} else { $post_tit = get_the_author_meta('display_name'); }
-		$post_perma = $general_vars['blogurl']. "/author/" .$author_vars->user_login;
+		$post_perma = $general_vars['blogurl']. "/blog/author/" .$author_vars->user_login;
+		//$authors_link = the_author_posts_link();
+		//echo $authors_link;
 		//related excerpt
 //		$post_excerpt = $author_vars->description;
 		$post_excerpt = "";
-		// related thumb
-		$post_thumbimg = get_avatar( $auth_id, 128 );
+		// related thumb --removed, as we don't need for academic lab
+		//$post_thumbimg = get_avatar( $auth_id, 128 );
 		
 	} else {
 		// related tit
@@ -146,13 +152,11 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 		echo "<span class='sub-tit-1'>" .$post_subtit. "</span>"; 
 		if ($post_excerpt) {
 			echo "<span class='page-text excerpt'$post_excerpt_stl>" .$post_excerpt. "</span>"; //only used for remotes and curatorial commite (about subpages)
-
 		}
 		?>
 	</header><!-- end .art-pre -->
 
 	<?php // comments
-
 	if ( get_post_type() == $general_options['pt_r'] && comments_open() && ! post_password_required() ) {
 		$post_perma = $post_perma. "#respond";
 	?>
@@ -161,7 +165,6 @@ if ( get_post_type() == $general_options['pt_a'] ) {
 			<div class="post_meta_item"><?php GetWtiLikePost();?></div>
 		</section>
 	<?php } ?>
-
 
 </article>
 

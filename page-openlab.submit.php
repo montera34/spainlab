@@ -5,11 +5,6 @@ Template Name: Open Lab submit form
 get_header();
 ?>
 
-<?php // dealing with user log in or sign up
-include "user.php";
-?>
-
-<div class="part-mid1 page-text">
 <?php // doing the inserts into DB
 if ( is_user_logged_in() && isset($_POST['addcontent-submit']) ) {
 	// if conditions to do inserts
@@ -152,9 +147,8 @@ if ( is_user_logged_in() && isset($_POST['addcontent-submit']) ) {
 
 } // end conditions to do inserts
 ?>
-</div>
 
-<div class="part-mid1 page-text">
+<div class="part-form page-text">
 <?php // this page content
 if ( have_posts() ) :
 	while ( have_posts() ) : the_post();
@@ -241,7 +235,8 @@ if ( is_user_logged_in() ) {
 	// form vars
 //	$action_slug = $wp_query->query_vars['name'];
 		$action_slug = get_permalink();
-	$ref = $post_perma;
+//	$ref = $post_perma;
+	$ref = $action_slug;
 
 	include "user-login.form.php";
 	include "user-signup.form.php";
@@ -249,7 +244,7 @@ if ( is_user_logged_in() ) {
 	// HTML output
 	// page header
 	$post_tit = "Log in";
-	$subtitle = "You must log in before submit any content. If you don't have still an account, you can fill in the form underneath.";
+	$subtitle = "You must log in before submit any content.<br />If you don't have still an account, you can fill in the sign up form underneath.";
 	echo "
 	<article>
 		<header class='art-pre'><h1 class='art-tit'>" .$post_tit. "</h1>
@@ -257,14 +252,13 @@ if ( is_user_logged_in() ) {
 		</header>
 	";
 
-//	echo "<h2>Login</h2>";
-
-	echo $login_form;
+	if ( isset($_GET['fail']) ) {}
+	else {echo $login_form; }
 	echo "<h2>Sign up</h2>";
 	echo $signup_form;
 
 } // end if user is logged in
 ?>
 	</article>
-</div><!-- end .part-mid1 -->
+</div><!-- end .part-form -->
 <?php get_footer(); ?>

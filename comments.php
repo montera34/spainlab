@@ -67,7 +67,7 @@ if ( isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['
 
     <div id="respond" class="clear">
         <div class="respond_meta">
-		<?php comment_form_title( 'Submit comment', 'Respond to %s' ); ?>
+		<?php comment_form_title( '', 'Respond to %s' ); ?>
 	</div>
         <div class="comment_form page-text">
 
@@ -77,11 +77,6 @@ if ( isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['
 
             <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform" onSubmit="return checkFields();">
 
-                <?php if ( $user_ID ) : ?>
-
-                    <p class="comment_message">Logged in as <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="Log out of this account">Log out &raquo;</a></p>
-
-                <?php else : ?>
                     <div class="user_data">
 				<fieldset>
 					<?php if($req) echo "<span class='req'>*</span>"; ?>
@@ -99,7 +94,6 @@ if ( isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['
 					<label for="url">Website</label>
 				</fieldset>
                     </div>
-                <?php endif; ?>
 
                 <!--<p class="comment_message"><small><strong>XHTML:</strong> You can use these tags: <code><?php //echo allowed_tags(); ?></code></small></p>-->
 
